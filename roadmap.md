@@ -69,15 +69,15 @@
 
 **Goal:** Main page showing month grid with runs per day.
 
-- [ ] **Server Component**: fetch runs for current month from DB
-- [ ] **MonthGrid** component — 7-column grid (Mon–Sun), day cells
-- [ ] **DayCell** component — day number, run count badge, total distance
-- [ ] **Client Component**: month navigation (← prev / next →) with `useSearchParams`
-- [ ] Current day highlight
-- [ ] Click day → show list of runs below the calendar (or expand)
-- [ ] Click run → navigate to `/run/[id]`
-- [ ] Responsive: grid adapts to mobile/tablet/desktop
-- [ ] Empty state for days/months with no runs
+- [x] **Server Component**: fetch runs for current month from DB
+- [x] **MonthGrid** component — 7-column grid (Mon–Sun), day cells
+- [x] **DayCell** component — day number, run count badge, total distance
+- [x] **Client Component**: month navigation (← prev / next →) with `useSearchParams`
+- [x] Current day highlight
+- [x] Click day → show list of runs below the calendar (or expand)
+- [x] Click run → navigate to `/run/[id]`
+- [x] Responsive: grid adapts to mobile/tablet/desktop
+- [x] Empty state for days/months with no runs
 
 **What you'll learn:**
 - Server Components for data fetching (no `useEffect` + loading states)
