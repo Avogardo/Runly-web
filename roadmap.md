@@ -137,13 +137,13 @@
 
 **Goal:** Protect the dashboard with authentication.
 
-- [ ] Install NextAuth.js (`next-auth`)
-- [ ] Configure credentials provider (email + password)
-- [ ] Create `login` page with glass-styled form
-- [ ] Middleware to protect `/` and `/run/[id]` routes
-- [ ] Session display in layout (user info / logout)
-- [ ] User model in Prisma (link runs to user)
-- [ ] API route protection (validate session)
+- [x] Install NextAuth.js (`next-auth`)
+- [x] Configure credentials provider (email + password)
+- [x] Create `login` page with glass-styled form
+- [x] Middleware to protect `/` and `/run/[id]` routes
+- [x] Session display in layout (user info / logout)
+- [x] User model in Prisma (link runs to user)
+- [x] API route protection (validate session)
 
 **What you'll learn:**
 - NextAuth.js setup with App Router

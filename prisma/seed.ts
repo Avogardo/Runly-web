@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -70,6 +71,19 @@ async function main() {
 
   // Clear existing data
   await prisma.run.deleteMany()
+  await prisma.session.deleteMany()
+  await prisma.user.deleteMany()
+
+  // Create seed user
+  const hashedPassword = await hash('password123', 12)
+  const user = await prisma.user.create({
+    data: {
+      email: 'runner@runly.app',
+      hashedPassword,
+      name: 'Runner',
+    },
+  })
+  console.log(`  👤 Created user: ${user.email} (password: password123)`)
 
   // Kraków, Poland area coordinates
   const centerLat = 50.0647
@@ -113,6 +127,7 @@ async function main() {
         duration: run.duration,
         path,
         intervals: run.hasIntervals ? generateIntervals(run.duration) : undefined,
+        userId: user.id,
       },
     })
 

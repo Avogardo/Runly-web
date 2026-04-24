@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { auth } from "@/lib/auth";
+import UserMenu from "@/components/ui/UserMenu";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,11 +21,13 @@ export const metadata: Metadata = {
     "Calendar-based running history dashboard with route visualization",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html
       lang="en"
@@ -40,9 +44,16 @@ export default function RootLayout({
                 Runly
               </span>
             </Link>
-            <span className="text-xs text-white/25 hidden sm:block">
-              Running Dashboard
-            </span>
+            {session?.user ? (
+              <UserMenu
+                userName={session.user.name}
+                userEmail={session.user.email}
+              />
+            ) : (
+              <span className="text-xs text-white/25 hidden sm:block">
+                Running Dashboard
+              </span>
+            )}
           </nav>
         </header>
         <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
