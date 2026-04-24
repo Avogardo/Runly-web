@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { createRunSchema, monthQuerySchema } from '@/lib/validations/run'
@@ -73,7 +74,7 @@ export async function POST(request: NextRequest) {
     const result = createRunSchema.safeParse(body)
     if (!result.success) {
       return NextResponse.json(
-        { error: 'Validation failed', details: result.error.flatten() },
+        { error: 'Validation failed', details: z.treeifyError(result.error) },
         { status: 400 },
       )
     }
