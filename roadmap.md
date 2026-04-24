@@ -9,13 +9,13 @@
 
 **Goal:** Working Next.js skeleton with Tailwind and project structure.
 
-- [ ] Initialize project: `npx create-next-app@latest` (App Router + TypeScript + Tailwind + ESLint)
-- [ ] Configure strict TypeScript (`tsconfig.json`)
-- [ ] Set up directory structure per `docs.md` (`src/components`, `src/lib`, `src/types`, `prisma`)
-- [ ] Configure path aliases (`@/` → `src/`)
-- [ ] Create placeholder pages: `/` (calendar) and `/run/[id]` (details)
-- [ ] Install Prettier, configure ESLint + Prettier integration
-- [ ] First run: `npm run dev` → see placeholder pages
+- [x] Initialize project: `npx create-next-app@latest` (App Router + TypeScript + Tailwind + ESLint)
+- [x] Configure strict TypeScript (`tsconfig.json`)
+- [x] Set up directory structure per `docs.md` (`src/components`, `src/lib`, `src/types`, `prisma`)
+- [x] Configure path aliases (`@/` → `src/`)
+- [x] Create placeholder pages: `/` (calendar) and `/run/[id]` (details)
+- [x] Install Prettier, configure ESLint + Prettier integration
+- [x] First run: `npm run dev` → see placeholder pages
 
 **What you'll learn:**
 - Next.js App Router vs Pages Router
