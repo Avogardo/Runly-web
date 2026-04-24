@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Run {
+  id        String   @id @default(uuid())
+  startedAt DateTime
+  endedAt   DateTime
+  distance  Float    // meters
+  duration  Float    // seconds
+  path      Json     // Coordinate[]
+  intervals Json?    // IntervalSummary
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

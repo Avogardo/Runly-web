@@ -29,12 +29,12 @@
 
 **Goal:** PostgreSQL schema with seed data, ready for querying.
 
-- [ ] Install Prisma: `npm install prisma @prisma/client`
-- [ ] Set up PostgreSQL (Neon free tier — serverless, no Docker needed)
-- [ ] Define `schema.prisma` — `Run` model with `path` (Json) and `intervals` (Json?)
-- [ ] Run `npx prisma migrate dev` — create initial migration
-- [ ] Create Prisma client singleton (`src/lib/db.ts`)
-- [ ] Write seed script (`prisma/seed.ts`) with 10–15 fake runs across different days
+- [x] Install Prisma: `npm install prisma @prisma/client`
+- [x] Set up PostgreSQL (Neon free tier — serverless, no Docker needed)
+- [x] Define `schema.prisma` — `Run` model with `path` (Json) and `intervals` (Json?)
+- [x] Run `npx prisma migrate dev` — create initial migration
+- [x] Create Prisma client singleton (`src/lib/db.ts`)
+- [x] Write seed script (`prisma/seed.ts`) with 10–15 fake runs across different days
 - [ ] Verify with `npx prisma studio` — browse data in GUI
 
 **What you'll learn:**
