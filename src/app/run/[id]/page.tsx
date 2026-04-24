@@ -20,10 +20,14 @@ export default async function RunDetailPage({ params }: { params: Params }) {
   const path = run.path as Coordinate[]
   const intervals = run.intervals as IntervalSummary | null
 
+  const runMonth = `${run.startedAt.getUTCFullYear()}-${String(run.startedAt.getUTCMonth() + 1).padStart(2, '0')}`
+  const runDay = run.startedAt.getUTCDate()
+  const backHref = `/?month=${runMonth}&day=${runDay}`
+
   return (
     <div className="flex flex-col gap-6">
       <Link
-        href="/"
+        href={backHref}
         className="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 text-sm transition-all duration-200 hover:-translate-x-0.5 w-fit"
       >
         ← Back to Calendar
