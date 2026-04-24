@@ -1,4 +1,4 @@
-import { formatDistance, formatDuration, formatPace } from '@/lib/utils'
+import { formatDistance, formatDuration, formatPace, formatDateTime } from '@/lib/utils'
 import GlassCard from '@/components/ui/GlassCard'
 
 type Props = {
@@ -8,18 +8,6 @@ type Props = {
   endedAt: Date
 }
 
-function formatDateTime(date: Date): string {
-  return date.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-    timeZone: 'UTC',
-  })
-}
 
 type StatCardProps = {
   label: string
@@ -29,7 +17,7 @@ type StatCardProps = {
 
 function StatCard({ label, value, accent = false }: StatCardProps) {
   return (
-    <div className="flex flex-col gap-1.5 bg-white/[0.04] rounded-xl p-3 sm:p-4 border border-white/[0.06]">
+    <div className="flex flex-col gap-1.5 bg-white/4 rounded-xl p-3 sm:p-4 border border-white/6">
       <span className="text-[10px] sm:text-xs text-foreground-muted uppercase tracking-wider">{label}</span>
       <span className={`text-lg sm:text-xl font-bold ${accent ? 'text-emerald-400' : 'text-white'}`}>
         {value}

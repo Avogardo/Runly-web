@@ -15,7 +15,7 @@ type SearchParams = Promise<{ month?: string; day?: string }>
 
 export default async function HomePage({ searchParams }: { searchParams: SearchParams }) {
   const session = (await auth())!
-  const userId = session.user!.id!
+  const userId = session.user.id
 
   const { month: monthParam, day: dayParam } = await searchParams
 

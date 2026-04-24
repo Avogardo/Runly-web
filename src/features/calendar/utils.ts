@@ -34,11 +34,16 @@ export function getAdjacentMonths(yearMonth: string): { prev: string; next: stri
 }
 
 export function getCalendarDays(year: number, month: number): CalendarDay[] {
-  const today = new Date()
-  const firstDayOfMonth = new Date(year, month - 1, 1)
-  const daysInMonth = new Date(year, month, 0).getDate()
+  const now = new Date()
+  const todayUTC = {
+    year: now.getUTCFullYear(),
+    month: now.getUTCMonth() + 1,
+    day: now.getUTCDate(),
+  }
+  const firstDayOfMonth = new Date(Date.UTC(year, month - 1, 1))
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate()
   // Monday = 0, ..., Sunday = 6
-  const startOffset = (firstDayOfMonth.getDay() + 6) % 7
+  const startOffset = (firstDayOfMonth.getUTCDay() + 6) % 7
 
   const days: CalendarDay[] = []
 
@@ -52,9 +57,9 @@ export function getCalendarDays(year: number, month: number): CalendarDay[] {
     days.push({
       dayNumber: d,
       isToday:
-        today.getFullYear() === year &&
-        today.getMonth() + 1 === month &&
-        today.getDate() === d,
+        todayUTC.year === year &&
+        todayUTC.month === month &&
+        todayUTC.day === d,
       isCurrentMonth: true,
     })
   }

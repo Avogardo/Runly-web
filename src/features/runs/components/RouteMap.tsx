@@ -45,15 +45,17 @@ export default function RouteMap({ path }: Props) {
   if (!start || !end) return null
 
   return (
-    <div className="w-full h-80 sm:h-100 rounded-2xl overflow-hidden border border-surface-border shadow-[0_0_30px_rgba(168,85,247,0.08)]">
+    <div className="w-full h-80 sm:h-100 rounded-2xl overflow-hidden border border-surface-border shadow-[0_0_30px_rgba(168,85,247,0.08)] [&_.leaflet-control-attribution]:text-[8px] [&_.leaflet-control-attribution]:bg-black/40 [&_.leaflet-control-attribution]:text-white/30 [&_.leaflet-control-attribution]:backdrop-blur-sm [&_.leaflet-control-attribution_a]:text-white/40">
       <MapContainer
         center={start}
         zoom={14}
         className="w-full h-full"
         zoomControl={false}
-        attributionControl={false}
       >
-        <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
+        />
         <Polyline positions={positions} pathOptions={{ color: '#A855F7', weight: 4, opacity: 0.9 }} />
         <Marker position={start} icon={startIcon} />
         <Marker position={end} icon={endIcon} />

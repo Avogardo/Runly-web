@@ -1,28 +1,13 @@
 import Link from 'next/link'
-import { formatDistance, formatDuration, formatPace } from '@/lib/utils'
+import { formatDistance, formatDuration, formatPace, formatTime } from '@/lib/utils'
 import GlassCard from '@/components/ui/GlassCard'
-
-type Run = {
-  id: string
-  startedAt: Date
-  distance: number
-  duration: number
-}
+import type { RunListItem } from '@/features/runs/queries'
 
 type Props = {
   day: number
   month: number
   year: number
-  runs: Run[]
-}
-
-function formatTime(date: Date): string {
-  return date.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-    timeZone: 'UTC',
-  })
+  runs: RunListItem[]
 }
 
 export default function DayRunsList({ day, month, year, runs }: Props) {
@@ -46,7 +31,7 @@ export default function DayRunsList({ day, month, year, runs }: Props) {
             <Link
               key={run.id}
               href={`/run/${run.id}`}
-              className="flex items-center justify-between p-3 sm:p-4 rounded-xl bg-white/[0.04] hover:bg-white/10 border border-white/[0.06] hover:border-purple-500/20 transition-all duration-200 group hover:shadow-[0_0_12px_rgba(168,85,247,0.08)]"
+              className="flex items-center justify-between p-3 sm:p-4 rounded-xl bg-white/4 hover:bg-white/10 border border-white/6 hover:border-purple-500/20 transition-all duration-200 group hover:shadow-[0_0_12px_rgba(168,85,247,0.08)]"
             >
               <div className="flex flex-col gap-1 min-w-14 sm:min-w-15">
                 <span className="text-foreground-muted text-xs">{formatTime(run.startedAt)}</span>
@@ -62,7 +47,7 @@ export default function DayRunsList({ day, month, year, runs }: Props) {
                     {formatDuration(run.duration)}
                   </span>
                 </div>
-                <div className="flex flex-col gap-1 hidden sm:flex">
+                <div className="hidden sm:flex flex-col gap-1">
                   <span className="text-foreground-muted text-xs uppercase tracking-wider">Pace</span>
                   <span className="text-white/80 text-sm font-medium">
                     {formatPace(run.distance, run.duration)}

@@ -1,15 +1,24 @@
 import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
 
-export default auth((req) => {
-  const isLoggedIn = !!req.auth
-  const isAuthPage = req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/register'
-  const isApiAuth = req.nextUrl.pathname.startsWith('/api/auth')
-  const isApiRegister = req.nextUrl.pathname === '/api/register'
+const PUBLIC_PATHS = ['/login', '/register']
+const PUBLIC_API_PREFIXES = ['/api/auth', '/api/register']
 
-  // Allow auth API routes and register endpoint always
-  if (isApiAuth || isApiRegister) {
+export default auth((req) => {
+  const { pathname } = req.nextUrl
+  const isLoggedIn = !!req.auth
+  const isAuthPage = PUBLIC_PATHS.includes(pathname)
+  const isPublicApi = PUBLIC_API_PREFIXES.some((prefix) => pathname.startsWith(prefix))
+  const isApiRoute = pathname.startsWith('/api/')
+
+  // Allow public API routes always
+  if (isPublicApi) {
     return NextResponse.next()
+  }
+
+  // Protected API routes → 401 JSON (not redirect) for mobile clients
+  if (isApiRoute && !isLoggedIn) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   // Redirect logged-in users away from auth pages
@@ -33,5 +42,3 @@ export default auth((req) => {
 export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 }
-
-

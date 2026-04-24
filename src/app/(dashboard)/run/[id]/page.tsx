@@ -11,7 +11,7 @@ type Params = Promise<{ id: string }>
 
 export default async function RunDetailPage({ params }: { params: Params }) {
   const session = (await auth())!
-  const userId = session.user!.id!
+  const userId = session.user.id
 
   const { id } = await params
 

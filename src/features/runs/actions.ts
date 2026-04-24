@@ -5,10 +5,19 @@ import { auth } from '@/lib/auth'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function deleteRun(runId: string) {
+export type RunActionState = {
+  error?: string
+} | null
+
+export async function deleteRun(
+  _prevState: RunActionState,
+  formData: FormData,
+): Promise<RunActionState> {
+  const runId = formData.get('runId') as string
+
   const session = await auth()
   if (!session?.user?.id) {
-    throw new Error('Unauthorized')
+    return { error: 'Unauthorized' }
   }
 
   const deleted = await prisma.run.deleteMany({
@@ -16,10 +25,9 @@ export async function deleteRun(runId: string) {
   })
 
   if (deleted.count === 0) {
-    throw new Error('Run not found')
+    return { error: 'Run not found' }
   }
 
   revalidatePath('/')
   redirect('/')
 }
-

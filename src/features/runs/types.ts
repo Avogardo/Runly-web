@@ -24,13 +24,4 @@ export type IntervalSummary = {
   intervals: Interval[]
 }
 
-export type Run = {
-  id: string
-  startedAt: string // ISO 8601
-  endedAt: string // ISO 8601
-  distance: number // meters
-  duration: number // seconds
-  path: Coordinate[]
-  intervals?: IntervalSummary
-}
 
