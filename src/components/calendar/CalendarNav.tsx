@@ -1,6 +1,4 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 type Props = {
   monthTitle: string
@@ -12,27 +10,25 @@ const btnClass =
   'w-10 h-10 flex items-center justify-center rounded-xl bg-surface hover:bg-white/12 border border-surface-border text-white text-lg transition-all duration-200 active:scale-95 hover:border-purple-500/30 hover:shadow-[0_0_12px_rgba(168,85,247,0.15)]'
 
 export default function CalendarNav({ monthTitle, prevMonth, nextMonth }: Props) {
-  const router = useRouter()
-
   return (
     <div className="flex items-center justify-between">
-      <button
-        onClick={() => router.push(`/?month=${prevMonth}`)}
+      <Link
+        href={`/?month=${prevMonth}`}
         className={btnClass}
         aria-label="Previous month"
       >
         ←
-      </button>
+      </Link>
 
       <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{monthTitle}</h2>
 
-      <button
-        onClick={() => router.push(`/?month=${nextMonth}`)}
+      <Link
+        href={`/?month=${nextMonth}`}
         className={btnClass}
         aria-label="Next month"
       >
         →
-      </button>
+      </Link>
     </div>
   )
 }

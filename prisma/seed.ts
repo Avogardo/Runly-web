@@ -71,7 +71,6 @@ async function main() {
 
   // Clear existing data
   await prisma.run.deleteMany()
-  await prisma.session.deleteMany()
   await prisma.user.deleteMany()
 
   // Create seed user

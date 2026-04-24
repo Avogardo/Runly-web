@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { createRunSchema, monthQuerySchema } from '@/lib/validations/run'
@@ -7,7 +8,7 @@ import { createRunSchema, monthQuerySchema } from '@/lib/validations/run'
 export async function GET(request: NextRequest) {
   try {
     const session = await auth()
-    if (!session) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -23,18 +24,14 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Build date filter
-    let where = {}
+    // Build date filter — always scoped to current user
+    const where: Prisma.RunWhereInput = { userId: session.user.id }
     if (monthParam) {
       const year = Number(monthParam.slice(0, 4))
       const month = Number(monthParam.slice(5, 7))
-      const startOfMonth = new Date(year, month - 1, 1)
-      const startOfNextMonth = new Date(year, month, 1)
-      where = {
-        startedAt: {
-          gte: startOfMonth,
-          lt: startOfNextMonth,
-        },
+      where.startedAt = {
+        gte: new Date(year, month - 1, 1),
+        lt: new Date(year, month, 1),
       }
     }
 
@@ -48,7 +45,6 @@ export async function GET(request: NextRequest) {
         distance: true,
         duration: true,
         createdAt: true,
-        // Exclude path and intervals from list (heavy data)
       },
     })
 
@@ -65,7 +61,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await auth()
-    if (!session) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -83,6 +79,7 @@ export async function POST(request: NextRequest) {
 
     const run = await prisma.run.create({
       data: {
+        userId: session.user.id,
         startedAt: new Date(startedAt),
         endedAt: new Date(endedAt),
         distance,

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/db'
+import { auth } from '@/lib/auth'
 import type { Coordinate, IntervalSummary } from '@/types/run.types'
 import RunStats from '@/components/run/RunStats'
 import IntervalBreakdown from '@/components/run/IntervalBreakdown'
@@ -9,9 +10,13 @@ import RouteMapWrapper from '@/components/run/RouteMapWrapper'
 type Params = Promise<{ id: string }>
 
 export default async function RunDetailPage({ params }: { params: Params }) {
+  const session = (await auth())!
+
   const { id } = await params
 
-  const run = await prisma.run.findUnique({ where: { id } })
+  const run = await prisma.run.findUnique({
+    where: { id, userId: session.user!.id },
+  })
 
   if (!run) {
     notFound()

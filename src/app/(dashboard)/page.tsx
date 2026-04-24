@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/db'
+import { auth } from '@/lib/auth'
 import {
   parseYearMonth,
   getCurrentYearMonth,
@@ -14,6 +15,8 @@ import DayRunsList from '@/components/calendar/DayRunsList'
 type SearchParams = Promise<{ month?: string; day?: string }>
 
 export default async function HomePage({ searchParams }: { searchParams: SearchParams }) {
+  const session = (await auth())!
+
   const { month: monthParam, day: dayParam } = await searchParams
 
   const yearMonth = monthParam ?? getCurrentYearMonth()
@@ -23,7 +26,10 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
   const { start, end } = getMonthDateRange(year, month)
 
   const runs = await prisma.run.findMany({
-    where: { startedAt: { gte: start, lt: end } },
+    where: {
+      userId: session.user!.id,
+      startedAt: { gte: start, lt: end },
+    },
     orderBy: { startedAt: 'asc' },
     select: {
       id: true,
@@ -66,3 +72,4 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
     </div>
   )
 }
+

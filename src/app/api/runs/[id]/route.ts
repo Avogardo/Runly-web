@@ -7,14 +7,14 @@ type Params = Promise<{ id: string }>
 export async function GET(_request: Request, { params }: { params: Params }) {
   try {
     const session = await auth()
-    if (!session) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { id } = await params
 
     const run = await prisma.run.findUnique({
-      where: { id },
+      where: { id, userId: session.user.id },
     })
 
     if (!run) {
@@ -37,26 +37,23 @@ export async function GET(_request: Request, { params }: { params: Params }) {
 export async function DELETE(_request: Request, { params }: { params: Params }) {
   try {
     const session = await auth()
-    if (!session) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const { id } = await params
 
-    const run = await prisma.run.findUnique({
-      where: { id },
+    const deleted = await prisma.run.deleteMany({
+      where: { id, userId: session.user.id },
     })
 
-    if (!run) {
+    if (deleted.count === 0) {
       return NextResponse.json(
         { error: 'Run not found' },
         { status: 404 },
       )
     }
 
-    await prisma.run.delete({
-      where: { id },
-    })
 
     return NextResponse.json({ message: 'Run deleted successfully' })
   } catch (error) {

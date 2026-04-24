@@ -4,11 +4,7 @@ import { MapContainer, TileLayer, Polyline, Marker, useMap } from 'react-leaflet
 import L from 'leaflet'
 import { useEffect } from 'react'
 import 'leaflet/dist/leaflet.css'
-
-type Coordinate = {
-  latitude: number
-  longitude: number
-}
+import type { Coordinate } from '@/types/run.types'
 
 type Props = {
   path: Coordinate[]

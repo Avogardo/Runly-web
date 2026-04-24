@@ -1,11 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-
-type Coordinate = {
-  latitude: number
-  longitude: number
-}
+import type { Coordinate } from '@/types/run.types'
 
 const RouteMap = dynamic(() => import('./RouteMap'), { ssr: false })
 
