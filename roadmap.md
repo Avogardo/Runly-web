@@ -35,7 +35,7 @@
 - [x] Run `npx prisma migrate dev` — create initial migration
 - [x] Create Prisma client singleton (`src/lib/db.ts`)
 - [x] Write seed script (`prisma/seed.ts`) with 10–15 fake runs across different days
-- [ ] Verify with `npx prisma studio` — browse data in GUI
+- [x] Verify with `npx prisma studio` — browse data in GUI
 
 **What you'll learn:**
 - Prisma ORM (schema, migrations, client)
@@ -48,14 +48,14 @@
 
 **Goal:** Working REST API for runs.
 
-- [ ] `GET /api/runs` — list all runs, sorted by date DESC
-- [ ] `GET /api/runs?month=2026-04` — filter by month
-- [ ] `GET /api/runs/[id]` — single run with full data
-- [ ] `POST /api/runs` — create a run (validate with Zod)
-- [ ] `DELETE /api/runs/[id]` — delete a run
-- [ ] Shared Zod schemas for request validation
-- [ ] Error handling (404, 400, 500) with consistent JSON responses
-- [ ] Test endpoints with Postman / curl
+- [x] `GET /api/runs` — list all runs, sorted by date DESC
+- [x] `GET /api/runs?month=2026-04` — filter by month
+- [x] `GET /api/runs/[id]` — single run with full data
+- [x] `POST /api/runs` — create a run (validate with Zod)
+- [x] `DELETE /api/runs/[id]` — delete a run
+- [x] Shared Zod schemas for request validation
+- [x] Error handling (404, 400, 500) with consistent JSON responses
+- [x] Test endpoints with Postman / curl
 
 **What you'll learn:**
 - Next.js Route Handlers (`route.ts` with `GET`, `POST`, `DELETE`)
