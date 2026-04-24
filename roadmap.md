@@ -114,16 +114,16 @@
 
 **Goal:** Match the mobile app's dark glassmorphism visual identity.
 
-- [ ] Tailwind config: add custom `runly` color palette from `docs.md` §8
-- [ ] Dark gradient background: `bg-gradient-to-b from-[#0B0B1E] via-[#1A1035] to-[#2D1B69]`
-- [ ] `GlassCard` component: `bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl`
-- [ ] Typography: white primary, muted secondary
-- [ ] Stats bar glass styling (matching mobile `StatsBar`)
-- [ ] Button styles: transparent bg + colored border + glow shadow (matching mobile)
-- [ ] Calendar day cells with glass effect
-- [ ] Responsive layout (mobile-first)
-- [ ] Dark Leaflet map tiles (CartoDB Dark Matter or similar)
-- [ ] Polish: transitions, hover states, focus rings
+- [x] Tailwind config: add custom `runly` color palette from `docs.md` §8
+- [x] Dark gradient background: `bg-gradient-to-b from-[#0B0B1E] via-[#1A1035] to-[#2D1B69]`
+- [x] `GlassCard` component: `bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl`
+- [x] Typography: white primary, muted secondary
+- [x] Stats bar glass styling (matching mobile `StatsBar`)
+- [x] Button styles: transparent bg + colored border + glow shadow (matching mobile)
+- [x] Calendar day cells with glass effect
+- [x] Responsive layout (mobile-first)
+- [x] Dark Leaflet map tiles (CartoDB Dark Matter or similar)
+- [x] Polish: transitions, hover states, focus rings
 
 **What you'll learn:**
 - Tailwind CSS customization (theme extension)

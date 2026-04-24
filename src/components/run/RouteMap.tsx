@@ -49,7 +49,7 @@ export default function RouteMap({ path }: Props) {
   if (!start || !end) return null
 
   return (
-    <div className="w-full h-[400px] rounded-2xl overflow-hidden border border-white/10">
+    <div className="w-full h-80 sm:h-100 rounded-2xl overflow-hidden border border-surface-border shadow-[0_0_30px_rgba(168,85,247,0.08)]">
       <MapContainer
         center={start}
         zoom={14}

@@ -20,9 +20,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(to bottom, #0B0B1E, #1A1035, #2D1B69);
+  background-attachment: fixed;
   color: var(--color-foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   min-height: 100vh;
+}
+
+/* Global focus ring for accessibility */
+:focus-visible {
+  outline: 2px solid #A855F7;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Smooth selection */
+::selection {
+  background: rgba(168, 85, 247, 0.3);
+  color: white;
 }

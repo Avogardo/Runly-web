@@ -24,7 +24,7 @@ export default async function RunDetailPage({ params }: { params: Params }) {
     <div className="flex flex-col gap-6">
       <Link
         href="/"
-        className="text-purple-400 hover:text-purple-300 text-sm transition-colors w-fit"
+        className="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 text-sm transition-all duration-200 hover:-translate-x-0.5 w-fit"
       >
         ← Back to Calendar
       </Link>

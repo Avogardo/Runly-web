@@ -1,4 +1,5 @@
 import type { CalendarDay } from '@/lib/calendar'
+import GlassCard from '@/components/ui/GlassCard'
 import DayCell from './DayCell'
 
 type RunSummary = {
@@ -17,11 +18,11 @@ const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 export default function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMonth }: Props) {
   return (
-    <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl p-4">
+    <GlassCard className="p-3 sm:p-4">
       {/* Weekday headers */}
       <div className="grid grid-cols-7 mb-1">
         {DAY_NAMES.map((name) => (
-          <div key={name} className="text-center text-xs font-medium text-white/35 py-2">
+          <div key={name} className="text-center text-[10px] sm:text-xs font-medium text-white/35 py-2 uppercase tracking-wider">
             {name}
           </div>
         ))}
@@ -31,7 +32,7 @@ export default function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMo
       <div className="grid grid-cols-7 gap-1">
         {calendarDays.map((day, index) => {
           if (!day.isCurrentMonth) {
-            return <div key={`empty-${index}`} className="min-h-[72px]" />
+            return <div key={`empty-${index}`} className="min-h-16 sm:min-h-18" />
           }
 
           const dayRuns = runsByDay.get(day.dayNumber) ?? []
@@ -50,7 +51,6 @@ export default function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMo
           )
         })}
       </div>
-    </div>
+    </GlassCard>
   )
 }
-

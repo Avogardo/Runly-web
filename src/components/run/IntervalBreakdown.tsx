@@ -1,4 +1,5 @@
 import type { IntervalSummary } from '@/types/run.types'
+import GlassCard from '@/components/ui/GlassCard'
 
 type Props = {
   intervals: IntervalSummary
@@ -10,8 +11,8 @@ export default function IntervalBreakdown({ intervals }: Props) {
   const lightCount = completed.filter((i) => i.type === 'light').length
 
   return (
-    <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl p-6">
-      <h3 className="text-lg font-semibold text-white mb-4">Interval Training</h3>
+    <GlassCard className="p-5 sm:p-6">
+      <h3 className="text-base sm:text-lg font-semibold text-white mb-4">Interval Training</h3>
 
       {/* Config summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
@@ -55,7 +56,6 @@ export default function IntervalBreakdown({ intervals }: Props) {
         {heavyCount} heavy · {lightCount} light
         {config.voiceEnabled && ' · 🔊 voice enabled'}
       </div>
-    </div>
+    </GlassCard>
   )
 }
-
