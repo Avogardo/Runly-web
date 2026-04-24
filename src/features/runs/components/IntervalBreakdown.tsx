@@ -1,4 +1,4 @@
-import type { IntervalSummary } from '@/types/run.types'
+import type { IntervalSummary } from '@/features/runs/types'
 import GlassCard from '@/components/ui/GlassCard'
 
 type Props = {
@@ -59,3 +59,4 @@ export default function IntervalBreakdown({ intervals }: Props) {
     </GlassCard>
   )
 }
+

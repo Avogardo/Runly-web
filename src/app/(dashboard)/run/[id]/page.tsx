@@ -1,30 +1,25 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
-import type { Coordinate, IntervalSummary } from '@/types/run.types'
-import RunStats from '@/components/run/RunStats'
-import IntervalBreakdown from '@/components/run/IntervalBreakdown'
-import RouteMapWrapper from '@/components/run/RouteMapWrapper'
-import DeleteRunButton from '@/components/run/DeleteRunButton'
+import { getRunById } from '@/features/runs/queries'
+import RunStats from '@/features/runs/components/RunStats'
+import IntervalBreakdown from '@/features/runs/components/IntervalBreakdown'
+import RouteMapWrapper from '@/features/runs/components/RouteMapWrapper'
+import DeleteRunButton from '@/features/runs/components/DeleteRunButton'
 
 type Params = Promise<{ id: string }>
 
 export default async function RunDetailPage({ params }: { params: Params }) {
   const session = (await auth())!
+  const userId = session.user!.id!
 
   const { id } = await params
 
-  const run = await prisma.run.findUnique({
-    where: { id, userId: session.user!.id },
-  })
+  const run = await getRunById(userId, id)
 
   if (!run) {
     notFound()
   }
-
-  const path = run.path as Coordinate[]
-  const intervals = run.intervals as IntervalSummary | null
 
   const runMonth = `${run.startedAt.getUTCFullYear()}-${String(run.startedAt.getUTCMonth() + 1).padStart(2, '0')}`
   const runDay = run.startedAt.getUTCDate()
@@ -49,10 +44,9 @@ export default async function RunDetailPage({ params }: { params: Params }) {
         endedAt={run.endedAt}
       />
 
-      {path.length > 0 && <RouteMapWrapper path={path} />}
+      {run.path.length > 0 && <RouteMapWrapper path={run.path} />}
 
-      {intervals && <IntervalBreakdown intervals={intervals} />}
+      {run.intervals && <IntervalBreakdown intervals={run.intervals} />}
     </div>
   )
 }
-

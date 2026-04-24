@@ -56,3 +56,4 @@ export default function RunStats({ distance, duration, startedAt, endedAt }: Pro
     </GlassCard>
   )
 }
+

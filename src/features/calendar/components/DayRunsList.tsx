@@ -80,3 +80,4 @@ export default function DayRunsList({ day, month, year, runs }: Props) {
     </GlassCard>
   )
 }
+

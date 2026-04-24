@@ -1,23 +1,18 @@
 'use server'
 
-import { hash } from 'bcryptjs'
-import { prisma } from '@/lib/db'
 import { signIn } from '@/lib/auth'
+import { createUser } from '@/features/auth/queries'
+import { registerSchema } from '@/features/auth/validations'
 import { redirect } from 'next/navigation'
 import { AuthError } from 'next-auth'
-import { z } from 'zod'
 
-// ── Register ────────────────────────────────────────────
-
-const registerSchema = z.object({
-  email: z.email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  name: z.string().min(1).optional(),
-})
+// ── Types ───────────────────────────────────────────────
 
 export type AuthActionState = {
   error?: string
 } | null
+
+// ── Register ────────────────────────────────────────────
 
 export async function registerUser(
   _prevState: AuthActionState,
@@ -36,18 +31,11 @@ export async function registerUser(
 
   const { email, password, name } = result.data
 
-  const existing = await prisma.user.findUnique({ where: { email } })
-  if (existing) {
+  const user = await createUser(email, password, name)
+  if (!user) {
     return { error: 'Email already registered' }
   }
 
-  const hashedPassword = await hash(password, 12)
-
-  await prisma.user.create({
-    data: { email, hashedPassword, name },
-  })
-
-  // Auto sign-in after registration
   const signInResult = await signIn('credentials', {
     email,
     password,
@@ -82,5 +70,4 @@ export async function loginUser(
 
   redirect('/')
 }
-
 

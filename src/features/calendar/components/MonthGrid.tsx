@@ -1,4 +1,4 @@
-import type { CalendarDay } from '@/lib/calendar'
+import type { CalendarDay } from '@/features/calendar/utils'
 import GlassCard from '@/components/ui/GlassCard'
 import DayCell from './DayCell'
 
@@ -54,3 +54,4 @@ export default function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMo
     </GlassCard>
   )
 }
+

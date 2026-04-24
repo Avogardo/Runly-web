@@ -32,3 +32,4 @@ export default function CalendarNav({ monthTitle, prevMonth, nextMonth }: Props)
     </div>
   )
 }
+

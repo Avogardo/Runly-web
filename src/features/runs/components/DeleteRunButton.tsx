@@ -1,7 +1,7 @@
 'use client'
 
 import { useTransition } from 'react'
-import { deleteRun } from '@/actions/runs'
+import { deleteRun } from '@/features/runs/actions'
 
 type Props = {
   runId: string

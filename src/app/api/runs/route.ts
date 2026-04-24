@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import type { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
-import { createRunSchema, monthQuerySchema } from '@/lib/validations/run'
+import { getUserRuns } from '@/features/runs/queries'
+import { createRunSchema, monthQuerySchema } from '@/features/runs/validations'
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,10 +12,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { searchParams } = request.nextUrl
-    const monthParam = searchParams.get('month')
+    const monthParam = request.nextUrl.searchParams.get('month')
 
-    // Validate month query param if present
     const monthResult = monthQuerySchema.safeParse(monthParam ?? undefined)
     if (!monthResult.success) {
       return NextResponse.json(
@@ -24,29 +22,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Build date filter — always scoped to current user
-    const where: Prisma.RunWhereInput = { userId: session.user.id }
-    if (monthParam) {
-      const year = Number(monthParam.slice(0, 4))
-      const month = Number(monthParam.slice(5, 7))
-      where.startedAt = {
-        gte: new Date(year, month - 1, 1),
-        lt: new Date(year, month, 1),
-      }
-    }
-
-    const runs = await prisma.run.findMany({
-      where,
-      orderBy: { startedAt: 'desc' },
-      select: {
-        id: true,
-        startedAt: true,
-        endedAt: true,
-        distance: true,
-        duration: true,
-        createdAt: true,
-      },
-    })
+    const runs = await getUserRuns(session.user.id, monthParam ?? undefined)
 
     return NextResponse.json(runs)
   } catch (error) {
@@ -98,4 +74,3 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-

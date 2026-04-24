@@ -1,21 +1,21 @@
-import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
+import { getRunsByMonth } from '@/features/runs/queries'
 import {
   parseYearMonth,
   getCurrentYearMonth,
   getCalendarDays,
   getAdjacentMonths,
   formatMonthYear,
-  getMonthDateRange,
-} from '@/lib/calendar'
-import CalendarNav from '@/components/calendar/CalendarNav'
-import MonthGrid from '@/components/calendar/MonthGrid'
-import DayRunsList from '@/components/calendar/DayRunsList'
+} from '@/features/calendar/utils'
+import CalendarNav from '@/features/calendar/components/CalendarNav'
+import MonthGrid from '@/features/calendar/components/MonthGrid'
+import DayRunsList from '@/features/calendar/components/DayRunsList'
 
 type SearchParams = Promise<{ month?: string; day?: string }>
 
 export default async function HomePage({ searchParams }: { searchParams: SearchParams }) {
   const session = (await auth())!
+  const userId = session.user!.id!
 
   const { month: monthParam, day: dayParam } = await searchParams
 
@@ -23,22 +23,7 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
   const { year, month } = parseYearMonth(yearMonth)
   const selectedDay = dayParam ? Number(dayParam) : null
 
-  const { start, end } = getMonthDateRange(year, month)
-
-  const runs = await prisma.run.findMany({
-    where: {
-      userId: session.user!.id,
-      startedAt: { gte: start, lt: end },
-    },
-    orderBy: { startedAt: 'asc' },
-    select: {
-      id: true,
-      startedAt: true,
-      endedAt: true,
-      distance: true,
-      duration: true,
-    },
-  })
+  const runs = await getRunsByMonth(userId, year, month)
 
   // Group runs by UTC day-of-month
   const runsByDay = new Map<number, typeof runs>()
@@ -72,4 +57,3 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
     </div>
   )
 }
-
