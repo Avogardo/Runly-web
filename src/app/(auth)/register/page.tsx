@@ -1,55 +1,14 @@
 'use client'
 
-import { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useActionState } from 'react'
 import Link from 'next/link'
+import { registerUser } from '@/actions/auth'
+
+const inputClass =
+  'bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:border-purple-500/50 focus:bg-white/[0.06] transition-all duration-200 outline-none'
 
 export default function RegisterPage() {
-  const router = useRouter()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-
-  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, name: name || undefined }),
-    })
-
-    if (!res.ok) {
-      const data = await res.json()
-      setError(data.error ?? 'Registration failed')
-      setLoading(false)
-      return
-    }
-
-    // Auto sign-in after registration
-    const result = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    })
-
-    setLoading(false)
-
-    if (result?.error) {
-      setError('Account created but sign-in failed. Try logging in.')
-    } else {
-      router.push('/')
-      router.refresh()
-    }
-  }
-
-  const inputClass =
-    'bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:border-purple-500/50 focus:bg-white/[0.06] transition-all duration-200 outline-none'
+  const [state, action, pending] = useActionState(registerUser, null)
 
   return (
     <div className="w-full max-w-sm">
@@ -60,12 +19,12 @@ export default function RegisterPage() {
       </div>
 
       <form
-        onSubmit={handleSubmit}
+        action={action}
         className="bg-surface backdrop-blur-xl border border-surface-border rounded-2xl p-6 flex flex-col gap-4"
       >
-        {error && (
+        {state?.error && (
           <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-red-400 text-sm">
-            {error}
+            {state.error}
           </div>
         )}
 
@@ -75,9 +34,8 @@ export default function RegisterPage() {
           </label>
           <input
             id="name"
+            name="name"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             autoComplete="name"
             className={inputClass}
             placeholder="Runner"
@@ -90,9 +48,8 @@ export default function RegisterPage() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
             className={inputClass}
@@ -106,9 +63,8 @@ export default function RegisterPage() {
           </label>
           <input
             id="password"
+            name="password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
             autoComplete="new-password"
@@ -119,10 +75,10 @@ export default function RegisterPage() {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={pending}
           className="mt-2 px-6 py-3 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 font-medium hover:bg-purple-500/30 hover:shadow-[0_0_16px_rgba(168,85,247,0.2)] transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? 'Creating account...' : 'Create account'}
+          {pending ? 'Creating account...' : 'Create account'}
         </button>
 
         <p className="text-center text-xs text-foreground-muted mt-1">
@@ -135,4 +91,3 @@ export default function RegisterPage() {
     </div>
   )
 }
-
