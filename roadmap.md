@@ -91,16 +91,16 @@
 
 **Goal:** Full run details with interactive route map.
 
-- [ ] Dynamic route: `app/run/[id]/page.tsx` (Server Component)
-- [ ] Fetch run data from DB via Prisma
-- [ ] Stats display: distance, duration, pace, date/time range
-- [ ] Install `leaflet` + `react-leaflet` for map
-- [ ] **RouteMap** component (Client) — render `Polyline` from `path[]`
-- [ ] Start marker (green) and end marker (purple)
-- [ ] Map auto-fits to route bounds
-- [ ] Interval breakdown section (if `run.intervals` exists): config, completed count
-- [ ] Back navigation to calendar
-- [ ] 404 page for non-existent run
+- [x] Dynamic route: `app/run/[id]/page.tsx` (Server Component)
+- [x] Fetch run data from DB via Prisma
+- [x] Stats display: distance, duration, pace, date/time range
+- [x] Install `leaflet` + `react-leaflet` for map
+- [x] **RouteMap** component (Client) — render `Polyline` from `path[]`
+- [x] Start marker (green) and end marker (purple)
+- [x] Map auto-fits to route bounds
+- [x] Interval breakdown section (if `run.intervals` exists): config, completed count
+- [x] Back navigation to calendar
+- [x] 404 page for non-existent run
 
 **What you'll learn:**
 - Dynamic routes with `params`
