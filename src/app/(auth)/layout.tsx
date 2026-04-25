@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
-import { LanguageSwitcher } from '@/components/ui'
 import { getLocale } from '@/lib/i18n/server'
+import { LanguageSwitcher } from '@/features/navigation'
 
 export default async function AuthLayout({ children }: { children: ReactNode }) {
   const lng = await getLocale()

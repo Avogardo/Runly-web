@@ -1,1 +1,1 @@
-export { loginUser, registerUser } from './user.actions'
+export { loginUser, registerUser, type AuthActionState } from './user.actions'

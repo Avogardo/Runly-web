@@ -6,7 +6,7 @@ import { registerSchema } from '@/features/auth'
 import { redirect } from 'next/navigation'
 import { AuthError } from 'next-auth'
 
-type AuthActionState = {
+export type AuthActionState = {
   error?: string
 } | null
 
