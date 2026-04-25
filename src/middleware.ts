@@ -1,5 +1,4 @@
-import { auth } from '@/lib/auth'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import acceptLanguage from 'accept-language'
 import { fallbackLng, languages, cookieName } from '@/lib/i18n/settings'
 import { SECONDS_IN_YEAR } from '@/consts'
@@ -8,10 +7,15 @@ acceptLanguage.languages([...languages])
 
 const PUBLIC_PATHS = ['/login', '/register']
 const PUBLIC_API_PREFIXES = ['/api/auth', '/api/register']
+const AUTH_COOKIE_NAMES = ['authjs.session-token', '__Secure-authjs.session-token']
 
-export default auth((req) => {
+function hasSessionCookie(req: NextRequest): boolean {
+  return AUTH_COOKIE_NAMES.some((name) => !!req.cookies.get(name)?.value)
+}
+
+export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
-  const isLoggedIn = !!req.auth
+  const isLoggedIn = hasSessionCookie(req)
   const isAuthPage = PUBLIC_PATHS.includes(pathname)
   const isPublicApi = PUBLIC_API_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const isApiRoute = pathname.startsWith('/api/')
@@ -46,7 +50,7 @@ export default auth((req) => {
   }
 
   return response ?? NextResponse.next()
-})
+}
 
 export const config = {
   matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
