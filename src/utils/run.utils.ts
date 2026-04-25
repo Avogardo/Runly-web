@@ -1,10 +1,12 @@
+import { SECONDS_IN_HOUR, SECONDS_IN_MINUTE, METERS_IN_KM } from '@/consts'
+
 /**
  * Format duration in seconds to HH:MM:SS or MM:SS
  */
 export function formatDuration(seconds: number): string {
-  const h = Math.floor(seconds / 3600)
-  const m = Math.floor((seconds % 3600) / 60)
-  const s = Math.floor(seconds % 60)
+  const h = Math.floor(seconds / SECONDS_IN_HOUR)
+  const m = Math.floor((seconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE)
+  const s = Math.floor(seconds % SECONDS_IN_MINUTE)
 
   if (h > 0) {
     return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
@@ -16,7 +18,7 @@ export function formatDuration(seconds: number): string {
  * Format distance in meters to km with 2 decimal places
  */
 export function formatDistance(meters: number): string {
-  return `${(meters / 1000).toFixed(2)} km`
+  return `${(meters / METERS_IN_KM).toFixed(2)} km`
 }
 
 /**
@@ -24,8 +26,8 @@ export function formatDistance(meters: number): string {
  */
 export function formatPace(distanceMeters: number, durationSeconds: number): string {
   if (distanceMeters === 0 || durationSeconds === 0) return '--:--'
-  const paceSeconds = durationSeconds / (distanceMeters / 1000)
-  const min = Math.floor(paceSeconds / 60)
-  const sec = Math.floor(paceSeconds % 60)
+  const paceSeconds = durationSeconds / (distanceMeters / METERS_IN_KM)
+  const min = Math.floor(paceSeconds / SECONDS_IN_MINUTE)
+  const sec = Math.floor(paceSeconds % SECONDS_IN_MINUTE)
   return `${min}:${sec.toString().padStart(2, '0')} /km`
 }

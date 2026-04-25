@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
 import acceptLanguage from 'accept-language'
 import { fallbackLng, languages, cookieName } from '@/lib/i18n/settings'
+import { SECONDS_IN_YEAR } from '@/consts'
 
 acceptLanguage.languages([...languages])
 
@@ -23,7 +24,7 @@ export default auth((req) => {
     const detected =
       acceptLanguage.get(req.headers.get('Accept-Language')) ?? fallbackLng
     response = NextResponse.next()
-    response.cookies.set(cookieName, detected, { path: '/', maxAge: 31536000 })
+    response.cookies.set(cookieName, detected, { path: '/', maxAge: SECONDS_IN_YEAR })
   }
 
   // — Auth logic —

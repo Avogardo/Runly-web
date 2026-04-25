@@ -4,6 +4,7 @@ import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
 import type { RunListItem } from '@/features/runs/queries'
 import {formatTime} from "../utils";
+import { LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'
 
 type Props = {
   day: number
@@ -16,10 +17,8 @@ type Props = {
   paceLabel: string
 }
 
-const localeMap: Record<string, string> = { en: 'en-US', pl: 'pl-PL' }
-
 export const DayRunsList: FC<Props> = ({ day, month, year, runs, lng, noRunsLabel, durationLabel, paceLabel }) => {
-  const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(localeMap[lng] ?? 'en-US', {
+  const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(LOCALE_MAP[lng] ?? DEFAULT_LOCALE, {
     weekday: 'long',
     month: 'long',
     day: 'numeric',

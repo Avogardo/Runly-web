@@ -3,10 +3,27 @@ import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
-/**
- * Generate a fake running path around a center point.
- * Creates a roughly circular route with some randomness.
- */
+// ── Seed constants ──────────────────────────────────────
+const BCRYPT_SALT_ROUNDS = 12
+const SEED_CENTER_LAT = 50.0647 // Kraków, Poland
+const SEED_CENTER_LNG = 19.945
+const PATH_MIN_RADIUS = 0.005 // ~0.5km
+const PATH_RADIUS_JITTER = 0.01 // up to ~1.5km total
+const PATH_POINT_JITTER = 0.001
+const PATH_POINT_INTERVAL_MS = 5_000 // one point every 5 seconds
+const SEED_HOUR_MIN = 6
+const SEED_HOUR_RANGE = 12 // 6:00 – 18:00
+const CENTER_OFFSET_RANGE = 0.02
+const METERS_IN_KM = 1_000
+const MS_IN_SECOND = 1_000
+
+const MINUTES_IN_HOUR = 60
+
+// ── Interval defaults ────────────────────────────────────
+const HEAVY_DURATION_SEC = 60
+const LIGHT_DURATION_SEC = 90
+const MIN_COMPLETED_INTERVALS = 3
+
 function generatePath(
   centerLat: number,
   centerLng: number,
@@ -14,15 +31,15 @@ function generatePath(
 ): { latitude: number; longitude: number; timestamp: number }[] {
   const path = []
   const startTime = Date.now()
-  const radius = 0.005 + Math.random() * 0.01 // ~0.5-1.5km radius
+  const radius = PATH_MIN_RADIUS + Math.random() * PATH_RADIUS_JITTER
 
   for (let i = 0; i < points; i++) {
     const angle = (2 * Math.PI * i) / points
-    const jitter = (Math.random() - 0.5) * 0.001
+    const jitter = (Math.random() - 0.5) * PATH_POINT_JITTER
     path.push({
       latitude: centerLat + Math.sin(angle) * radius + jitter,
       longitude: centerLng + Math.cos(angle) * radius + jitter,
-      timestamp: startTime + i * 5000, // point every 5 seconds
+      timestamp: startTime + i * PATH_POINT_INTERVAL_MS,
     })
   }
 
@@ -33,32 +50,30 @@ function generatePath(
  * Generate fake interval data for some runs.
  */
 function generateIntervals(durationSec: number) {
-  const heavyDuration = 60
-  const lightDuration = 90
-  const cycleDuration = heavyDuration + lightDuration
+  const cycleDuration = HEAVY_DURATION_SEC + LIGHT_DURATION_SEC
   const total = Math.floor(durationSec / cycleDuration)
-  const completed = Math.min(total, Math.floor(Math.random() * total) + 3)
+  const completed = Math.min(total, Math.floor(Math.random() * total) + MIN_COMPLETED_INTERVALS)
 
   const intervals = []
   let time = Date.now()
 
   for (let i = 0; i < completed; i++) {
     const isHeavy = i % 2 === 0
-    const dur = isHeavy ? heavyDuration : lightDuration
+    const dur = isHeavy ? HEAVY_DURATION_SEC : LIGHT_DURATION_SEC
     intervals.push({
       type: isHeavy ? 'heavy' : 'light',
       startedAt: time,
-      endedAt: time + dur * 1000,
+      endedAt: time + dur * MS_IN_SECOND,
       duration: dur,
     })
-    time += dur * 1000
+    time += dur * MS_IN_SECOND
   }
 
   return {
     config: {
       total,
-      lightDurationSec: lightDuration,
-      heavyDurationSec: heavyDuration,
+      lightDurationSec: LIGHT_DURATION_SEC,
+      heavyDurationSec: HEAVY_DURATION_SEC,
       startWithHeavy: true,
       voiceEnabled: true,
     },
@@ -74,7 +89,7 @@ async function main() {
   await prisma.user.deleteMany()
 
   // Create seed user
-  const hashedPassword = await hash('password123', 12)
+  const hashedPassword = await hash('password123', BCRYPT_SALT_ROUNDS)
   const user = await prisma.user.create({
     data: {
       email: 'runner@runly.app',
@@ -84,9 +99,8 @@ async function main() {
   })
   console.log(`  👤 Created user: ${user.email} (password: password123)`)
 
-  // Kraków, Poland area coordinates
-  const centerLat = 50.0647
-  const centerLng = 19.945
+  const centerLat = SEED_CENTER_LAT
+  const centerLng = SEED_CENTER_LNG
 
   const runs = [
     // April 2026 runs
@@ -109,13 +123,13 @@ async function main() {
   ]
 
   for (const run of runs) {
-    const startHour = 6 + Math.floor(Math.random() * 12) // 6:00 - 18:00
-    const startMin = Math.floor(Math.random() * 60)
+    const startHour = SEED_HOUR_MIN + Math.floor(Math.random() * SEED_HOUR_RANGE)
+    const startMin = Math.floor(Math.random() * MINUTES_IN_HOUR)
     const startedAt = new Date(`${run.date}T${String(startHour).padStart(2, '0')}:${String(startMin).padStart(2, '0')}:00Z`)
-    const endedAt = new Date(startedAt.getTime() + run.duration * 1000)
+    const endedAt = new Date(startedAt.getTime() + run.duration * MS_IN_SECOND)
 
-    const pathPoints = Math.floor(run.duration / 5) // one point every ~5 seconds
-    const offset = (Math.random() - 0.5) * 0.02
+    const pathPoints = Math.floor(run.duration / (PATH_POINT_INTERVAL_MS / MS_IN_SECOND))
+    const offset = (Math.random() - 0.5) * CENTER_OFFSET_RANGE
     const path = generatePath(centerLat + offset, centerLng + offset, pathPoints)
 
     await prisma.run.create({
@@ -130,7 +144,7 @@ async function main() {
       },
     })
 
-    console.log(`  ✅ Created run: ${run.date} — ${(run.distance / 1000).toFixed(1)} km`)
+    console.log(`  ✅ Created run: ${run.date} — ${(run.distance / METERS_IN_KM).toFixed(1)} km`)
   }
 
   console.log(`\n🎉 Seeded ${runs.length} runs!`)

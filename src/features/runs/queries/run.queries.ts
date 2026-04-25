@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db'
 import {Coordinate, IntervalSummary} from '../types'
 import { runListSelect, runDetailSelect } from "../consts"
 import {getMonthDateRange} from "../utils";
+import { parseYearMonth } from '@/features/calendar/utils'
 
 export type RunListItem = Awaited<ReturnType<typeof getRunsByMonth>>[number]
 
@@ -29,8 +30,7 @@ export async function getRunsByMonth(userId: string, year: number, month: number
  */
 export async function getUserRuns(userId: string, yearMonth?: string) {
   if (yearMonth) {
-    const year = Number(yearMonth.slice(0, 4))
-    const month = Number(yearMonth.slice(5, 7))
+    const { year, month } = parseYearMonth(yearMonth)
     return getRunsByMonth(userId, year, month)
   }
 

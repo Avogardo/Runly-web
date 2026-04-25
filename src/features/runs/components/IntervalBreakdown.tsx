@@ -1,6 +1,7 @@
 import { type FC } from 'react'
 import type { IntervalSummary } from '@/features/runs/types'
 import GlassCard from '@/components/ui/GlassCard'
+import { INTERVAL_BAR_WIDTH_DIVISOR, INTERVAL_BAR_MIN_WIDTH_PX } from '../consts'
 
 type IntervalLabels = {
   title: string
@@ -58,7 +59,7 @@ export const IntervalBreakdown: FC<Props> = ({ intervals, labels }) => {
                 ? 'bg-purple-500/30 text-purple-300 border border-purple-500/30'
                 : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/20'
             }`}
-            style={{ width: `${Math.max(interval.duration / 2, 24)}px` }}
+            style={{ width: `${Math.max(interval.duration / INTERVAL_BAR_WIDTH_DIVISOR, INTERVAL_BAR_MIN_WIDTH_PX)}px` }}
             title={`${interval.type} — ${interval.duration}s`}
           >
             {interval.type === 'heavy' ? 'H' : 'L'}

@@ -1,7 +1,12 @@
 import { z } from 'zod'
 
+const MIN_LATITUDE = -90
+const MAX_LATITUDE = 90
+const MIN_LONGITUDE = -180
+const MAX_LONGITUDE = 180
+
 export const coordinateSchema = z.object({
-  latitude: z.number().min(-90).max(90),
-  longitude: z.number().min(-180).max(180),
+  latitude: z.number().min(MIN_LATITUDE).max(MAX_LATITUDE),
+  longitude: z.number().min(MIN_LONGITUDE).max(MAX_LONGITUDE),
   timestamp: z.number(),
 })

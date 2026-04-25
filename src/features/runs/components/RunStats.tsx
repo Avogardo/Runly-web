@@ -4,6 +4,7 @@ import GlassCard from '@/components/ui/GlassCard'
 import {StatCard} from "./StatCard";
 
 import {formatDateTime} from "../utils";
+import { LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'
 
 type StatsLabels = {
   distance: string
@@ -21,10 +22,8 @@ type Props = {
   lng: string
 }
 
-const localeMap: Record<string, string> = { en: 'en-US', pl: 'pl-PL' }
-
 export const RunStats: FC<Props> = ({ distance, duration, startedAt, endedAt, labels, lng }) => {
-  const dateLocale = localeMap[lng] ?? 'en-US'
+  const dateLocale = LOCALE_MAP[lng] ?? DEFAULT_LOCALE
 
   return (
     <GlassCard className="p-4 sm:p-6 flex flex-col gap-4">
