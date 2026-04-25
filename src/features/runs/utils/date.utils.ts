@@ -6,7 +6,7 @@ export function getMonthDateRange(year: number, month: number): { start: Date; e
 }
 
 export function formatDateTime(date: Date, locale: string = 'en-US'): string {
-  return date.toLocaleString(locale, {
+  const result = date.toLocaleString(locale, {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -15,4 +15,5 @@ export function formatDateTime(date: Date, locale: string = 'en-US'): string {
     hour12: false,
     timeZone: 'UTC',
   })
+  return result.charAt(0).toUpperCase() + result.slice(1)
 }

@@ -19,7 +19,7 @@ export const UserMenu: FC<UserMenuProps> = ({ userName, userEmail, signOutLabel 
       >
         <button
           type="submit"
-          className="text-xs px-3 py-1.5 rounded-lg bg-white/6 border border-white/10 text-white/70 hover:text-white hover:border-purple-500/30 transition-all duration-200"
+          className="text-xs px-3 py-1.5 rounded-lg bg-white/6 border border-white/10 text-white/70 hover:text-white hover:border-purple-500/30 transition-all duration-200 cursor-pointer"
         >
           {signOutLabel}
         </button>

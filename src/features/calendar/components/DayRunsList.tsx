@@ -27,7 +27,7 @@ export const DayRunsList: FC<Props> = ({
   durationLabel,
   paceLabel,
 }) => {
-  const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(
+  const rawDateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(
     LOCALE_MAP[lng] ?? DEFAULT_LOCALE,
     {
       weekday: 'long',
@@ -37,6 +37,7 @@ export const DayRunsList: FC<Props> = ({
       timeZone: 'UTC',
     },
   )
+  const dateLabel = rawDateLabel.charAt(0).toUpperCase() + rawDateLabel.slice(1)
 
   return (
     <GlassCard className="p-5 sm:p-6">

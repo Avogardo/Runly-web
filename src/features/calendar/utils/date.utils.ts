@@ -9,10 +9,14 @@ export function getCurrentYearMonth(): string {
 }
 
 export function formatMonthYear(year: number, month: number, locale: string = 'en'): string {
-  return new Date(year, month - 1, 1).toLocaleDateString(LOCALE_MAP[locale] ?? DEFAULT_LOCALE, {
-    month: 'long',
-    year: 'numeric',
-  })
+  const result = new Date(year, month - 1, 1).toLocaleDateString(
+    LOCALE_MAP[locale] ?? DEFAULT_LOCALE,
+    {
+      month: 'long',
+      year: 'numeric',
+    },
+  )
+  return result.charAt(0).toUpperCase() + result.slice(1)
 }
 
 export function getAdjacentMonths(yearMonth: string): { prev: string; next: string } {
