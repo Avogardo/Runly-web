@@ -1,16 +1,16 @@
 'use client'
 
+import { type FC, useEffect } from 'react'
 import { MapContainer, TileLayer, Polyline, Marker, useMap } from 'react-leaflet'
 import L from 'leaflet'
-import { useEffect } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Coordinate } from '../types'
 
 type Props = {
   path: Coordinate[]
 }
-
-function createCircleIcon(color: string) {
+// ...existing code...
+export const RouteMap: FC<Props> = ({ path }) => {
   return L.divIcon({
     className: '',
     html: `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid white;box-shadow:0 0 6px ${color}"></div>`,

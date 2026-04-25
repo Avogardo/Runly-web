@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
 import {StatCard} from "./StatCard";
@@ -11,7 +12,7 @@ type Props = {
   endedAt: Date
 }
 
-export function RunStats({ distance, duration, startedAt, endedAt }: Props) {
+export const RunStats: FC<Props> = ({ distance, duration, startedAt, endedAt }) => {
   return (
     <GlassCard className="p-4 sm:p-6 flex flex-col gap-4">
       {/* Stats grid */}

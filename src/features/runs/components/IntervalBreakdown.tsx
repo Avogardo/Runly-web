@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import type { IntervalSummary } from '@/features/runs/types'
 import GlassCard from '@/components/ui/GlassCard'
 
@@ -5,7 +6,7 @@ type Props = {
   intervals: IntervalSummary
 }
 
-export function IntervalBreakdown({ intervals }: Props) {
+export const IntervalBreakdown: FC<Props> = ({ intervals }) => {
   const { config, intervals: completed } = intervals
   const heavyCount = completed.filter((i) => i.type === 'heavy').length
   const lightCount = completed.filter((i) => i.type === 'light').length

@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import { cn } from '@/utils'
 
 type Props = {
@@ -5,7 +6,7 @@ type Props = {
   className?: string
 }
 
-export default function GlassCard({ children, className }: Props) {
+const GlassCard: FC<Props> = ({ children, className }) => {
   return (
     <div
       className={cn(
@@ -17,4 +18,6 @@ export default function GlassCard({ children, className }: Props) {
     </div>
   )
 }
+
+export default GlassCard
 

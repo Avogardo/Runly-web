@@ -1,13 +1,13 @@
 'use client'
 
-import { useActionState } from 'react'
+import { type FC, useActionState } from 'react'
 import { deleteRun } from '../actions'
 
 type Props = {
   runId: string
 }
 
-export function DeleteRunButton({ runId }: Props) {
+export const DeleteRunButton: FC<Props> = ({ runId }) => {
   const [state, action, pending] = useActionState(deleteRun, null)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {

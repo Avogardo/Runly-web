@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import type { CalendarDay } from '@/features/calendar/utils'
 import GlassCard from '@/components/ui/GlassCard'
 import {DayCell} from './DayCell'
@@ -16,7 +17,7 @@ type Props = {
 
 const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-export function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMonth }: Props) {
+export const MonthGrid: FC<Props> = ({ calendarDays, runsByDay, selectedDay, yearMonth }) => {
   return (
     <GlassCard className="p-3 sm:p-4">
       {/* Weekday headers */}

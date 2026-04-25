@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import Link from 'next/link'
 import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
@@ -11,7 +12,7 @@ type Props = {
   runs: RunListItem[]
 }
 
-export function DayRunsList({ day, month, year, runs }: Props) {
+export const DayRunsList: FC<Props> = ({ day, month, year, runs }) => {
   const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',

@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import Link from 'next/link'
 import { formatDistance, cn } from '@/utils'
 
@@ -10,14 +11,14 @@ type Props = {
   yearMonth: string
 }
 
-export function DayCell({
+export const DayCell: FC<Props> = ({
   dayNumber,
   isToday,
   isSelected,
   runCount,
   totalDistance,
   yearMonth,
-}: Props) {
+}) => {
   const href = isSelected
     ? `/?month=${yearMonth}`
     : `/?month=${yearMonth}&day=${dayNumber}`
