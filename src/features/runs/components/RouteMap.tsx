@@ -62,9 +62,22 @@ export const RouteMap: FC<RouteMapProps> = ({ path }) => {
         className="w-full h-full"
         zoomControl={false}
       >
+        {/* Localhost lighter version  */}
+        {/*<TileLayer*/}
+        {/*  url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"*/}
+        {/*  attribution='&copy; <a href="https://stadiamaps.com/">Stadia</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'*/}
+        {/*/>*/}
         <TileLayer
-          url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://stadiamaps.com/">Stadia</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+          url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
+        />
+        <TileLayer
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          opacity={0.15}
+        />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
+          opacity={0.85}
         />
         <Polyline
           positions={positions}
