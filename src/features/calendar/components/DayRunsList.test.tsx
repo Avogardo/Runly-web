@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import { ReactNode } from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
@@ -73,4 +73,3 @@ describe('Given DayRunsList component', () => {
     })
   })
 })
-

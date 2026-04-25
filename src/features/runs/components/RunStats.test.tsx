@@ -61,4 +61,3 @@ describe('Given RunStats component', () => {
     })
   })
 })
-

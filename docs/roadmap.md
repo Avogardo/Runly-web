@@ -164,14 +164,14 @@
 
 **Goal:** App running on AWS, accessible via URL.
 
-- [ ] Create AWS account (if needed) + configure IAM
-- [ ] Set up AWS Amplify app (connect to GitHub repo)
-- [ ] Configure environment variables (`DATABASE_URL`, `NEXTAUTH_SECRET`)
-- [ ] Deploy — verify SSR works on Amplify
-- [ ] Set up PostgreSQL on Neon (or AWS RDS if preferred)
-- [ ] Run Prisma migrations in production
+- [x] Create AWS account (if needed) + configure IAM
+- [x] Set up AWS Amplify app (connect to GitHub repo)
+- [x] Configure environment variables (`DATABASE_URL`, `NEXTAUTH_SECRET`)
+- [x] Deploy — verify SSR works on Amplify
+- [x] Set up PostgreSQL on Neon (or AWS RDS if preferred)
+- [x] Run Prisma migrations in production
 - [ ] Custom domain (optional, via Route 53)
-- [ ] Verify: full flow works in production (calendar → run details)
+- [x] Verify: full flow works in production (calendar → run details)
 
 **What you'll learn:**
 

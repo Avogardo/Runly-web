@@ -57,16 +57,16 @@ Open [http://localhost:3000](http://localhost:3000) — you'll be redirected to 
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start dev server |
-| `npm run build` | Production build |
-| `npm run start` | Start production server |
-| `npm run lint` | ESLint check |
-| `npm run format` | Prettier format all files |
+| Command                | Description               |
+| ---------------------- | ------------------------- |
+| `npm run dev`          | Start dev server          |
+| `npm run build`        | Production build          |
+| `npm run start`        | Start production server   |
+| `npm run lint`         | ESLint check              |
+| `npm run format`       | Prettier format all files |
 | `npm run format:check` | Prettier check formatting |
-| `npm run test` | Run tests (Vitest) |
-| `npm run test:watch` | Run tests in watch mode |
+| `npm run test`         | Run tests (Vitest)        |
+| `npm run test:watch`   | Run tests in watch mode   |
 
 ## Project Structure
 
@@ -99,13 +99,13 @@ src/
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/runs` | List runs (optional `?month=YYYY-MM`) |
-| `GET` | `/api/runs/[id]` | Get single run with full data |
-| `POST` | `/api/runs` | Create a run (Zod validated) |
-| `DELETE` | `/api/runs/[id]` | Delete a run |
-| `POST` | `/api/register` | Register new user |
+| Method   | Endpoint         | Description                           |
+| -------- | ---------------- | ------------------------------------- |
+| `GET`    | `/api/runs`      | List runs (optional `?month=YYYY-MM`) |
+| `GET`    | `/api/runs/[id]` | Get single run with full data         |
+| `POST`   | `/api/runs`      | Create a run (Zod validated)          |
+| `DELETE` | `/api/runs/[id]` | Delete a run                          |
+| `POST`   | `/api/register`  | Register new user                     |
 
 ## License
 

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import {ReactNode} from "react";
+import { ReactNode } from 'react'
 
 import type { CalendarDay } from '../types'
 import { MonthGrid } from './MonthGrid'
@@ -203,4 +203,3 @@ describe('Given MonthGrid component', () => {
     })
   })
 })
-

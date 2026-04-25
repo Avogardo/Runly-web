@@ -36,4 +36,3 @@ describe('Given StatCard component', () => {
     })
   })
 })
-
