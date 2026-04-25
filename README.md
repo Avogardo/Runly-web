@@ -2,6 +2,13 @@
 
 Web dashboard for the Runly running app. View your runs on a calendar, explore route maps, and track interval training — all in a dark glassmorphism UI.
 
+## Screenshots
+
+<p>
+  <img src="docs/calendar.jpg" alt="Calendar" width="400" />
+  <img src="docs/details.jpg" alt="Run Details" width="400" />
+</p>
+
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router, Server Components)
