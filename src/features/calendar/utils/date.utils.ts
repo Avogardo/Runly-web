@@ -19,9 +19,10 @@ export function formatMonthYear(year: number, month: number, locale: string = 'e
   return result.charAt(0).toUpperCase() + result.slice(1)
 }
 
+const toYM = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+
 export function getAdjacentMonths(yearMonth: string): { prev: string; next: string } {
   const { year, month } = parseYearMonth(yearMonth)
-  const toYM = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
   return {
     prev: toYM(new Date(year, month - 2, 1)),
     next: toYM(new Date(year, month, 1)),
