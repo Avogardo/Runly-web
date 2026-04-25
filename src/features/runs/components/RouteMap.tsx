@@ -9,8 +9,8 @@ import type { Coordinate } from '../types'
 type Props = {
   path: Coordinate[]
 }
-// ...existing code...
-export const RouteMap: FC<Props> = ({ path }) => {
+
+function createCircleIcon(color: string) {
   return L.divIcon({
     className: '',
     html: `<div style="width:14px;height:14px;border-radius:50%;background:${color};border:2px solid white;box-shadow:0 0 6px ${color}"></div>`,
@@ -36,7 +36,7 @@ function FitBounds({ positions }: { positions: L.LatLngExpression[] }) {
   return null
 }
 
-export function RouteMap({ path }: Props) {
+export const RouteMap: FC<Props> = ({ path }) => {
   const positions: L.LatLngExpression[] = path.map((p) => [p.latitude, p.longitude])
   const start = positions[0]
   const end = positions[positions.length - 1]
