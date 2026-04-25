@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏃 Runly Web
+
+Web dashboard for the Runly running app. View your runs on a calendar, explore route maps, and track interval training — all in a dark glassmorphism UI.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, Server Components)
+- **Language:** TypeScript (strict mode)
+- **Styling:** Tailwind CSS 4 — dark glassmorphism theme
+- **Database:** PostgreSQL (Neon) + Prisma ORM
+- **Auth:** NextAuth.js v5 (credentials provider, JWT)
+- **Maps:** Leaflet + React Leaflet (dark tiles)
+- **Validation:** Zod v4
+- **i18n:** i18next (English + Polish)
+- **Testing:** Vitest + React Testing Library
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- PostgreSQL database (e.g. [Neon](https://neon.tech) free tier)
+
+### Setup
 
 ```bash
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env
+# Edit .env with your DATABASE_URL and NEXTAUTH_SECRET
+
+# Run database migrations
+npx prisma migrate dev
+
+# Seed the database with sample data
+npx prisma db seed
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) — you'll be redirected to the login page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Seed Account
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Email:** `runner@runly.app`
+- **Password:** `password123`
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|---|---|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | ESLint check |
+| `npm run format` | Prettier format all files |
+| `npm run format:check` | Prettier check formatting |
+| `npm run test` | Run tests (Vitest) |
+| `npm run test:watch` | Run tests in watch mode |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                    # Next.js App Router pages & layouts
+│   ├── (auth)/             # Login & register (public)
+│   ├── (dashboard)/        # Calendar & run details (protected)
+│   └── api/                # REST API routes
+├── features/               # Feature modules
+│   ├── auth/               # Auth actions, components, schemas
+│   ├── calendar/           # Calendar grid, navigation, utils
+│   ├── navigation/         # UserMenu, LanguageSwitcher
+│   └── runs/               # Run stats, map, intervals
+├── lib/                    # Shared libraries (auth, db, i18n)
+├── consts/                 # App constants
+├── ui/                     # Reusable UI components (GlassCard)
+├── utils/                  # Pure utility functions
+└── types/                  # Global type declarations
+```
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 📅 **Calendar View** — monthly grid with run indicators, day selection
+- 🗺️ **Route Map** — interactive Leaflet map with dark tiles, start/end markers
+- 📊 **Run Stats** — distance, duration, pace, interval breakdown
+- 🔐 **Authentication** — login/register with session protection
+- 🌍 **i18n** — English and Polish
+- ✨ **Glassmorphism UI** — dark theme with blur effects and purple accents
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/runs` | List runs (optional `?month=YYYY-MM`) |
+| `GET` | `/api/runs/[id]` | Get single run with full data |
+| `POST` | `/api/runs` | Create a run (Zod validated) |
+| `DELETE` | `/api/runs/[id]` | Delete a run |
+| `POST` | `/api/register` | Register new user |
+
+## License
+
+Private project — not for redistribution.
