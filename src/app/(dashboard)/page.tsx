@@ -26,7 +26,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   const yearMonth = monthParam ?? getCurrentYearMonth()
   const { year, month } = parseYearMonth(yearMonth)
-  const selectedDay = dayParam ? Number(dayParam) : null
+
+  const now = new Date()
+  const isCurrentMonth = year === now.getFullYear() && month === now.getMonth() + 1
+  const selectedDay = dayParam ? Number(dayParam) : isCurrentMonth ? now.getDate() : null
 
   const runs = await getRunsByMonth(userId, year, month)
 
