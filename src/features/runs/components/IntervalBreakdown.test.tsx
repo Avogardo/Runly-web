@@ -13,17 +13,16 @@ const labels: IntervalLabels = {
   intervals: 'intervals',
   heavyLabel: 'heavy',
   lightLabel: 'light',
-  voiceEnabled: 'Voice',
 }
 
-function makeIntervals(voiceEnabled = false): IntervalSummary {
+function makeIntervals(): IntervalSummary {
   return {
     config: {
       total: 6,
       heavyDurationSec: 60,
       lightDurationSec: 90,
       startWithHeavy: true,
-      voiceEnabled,
+      voiceEnabled: false,
     },
     intervals: [
       { type: 'heavy', startedAt: 0, endedAt: 60000, duration: 60 },
@@ -62,20 +61,5 @@ describe('Given IntervalBreakdown component', () => {
         expect(screen.getByText(/1 light/)).toBeInTheDocument()
       })
     })
-
-    describe('And voiceEnabled is true', () => {
-      it('Then voice label should be visible', () => {
-        render(<IntervalBreakdown intervals={makeIntervals(true)} labels={labels} />)
-        expect(screen.getByText(/Voice/)).toBeInTheDocument()
-      })
-    })
-
-    describe('And voiceEnabled is false', () => {
-      it('Then voice label should NOT be visible', () => {
-        render(<IntervalBreakdown intervals={makeIntervals(false)} labels={labels} />)
-        expect(screen.queryByText(/Voice/)).not.toBeInTheDocument()
-      })
-    })
   })
 })
-

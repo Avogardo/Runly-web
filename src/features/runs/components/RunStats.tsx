@@ -44,7 +44,7 @@ export const RunStats: FC<RunStatsProps> = ({
       </div>
 
       <div className="text-xs sm:text-sm text-foreground-muted">
-        {formatDateTime(startedAt)} → {formatDateTime(endedAt)}
+        {formatDateTime(startedAt, dateLocale)} → {formatDateTime(endedAt, dateLocale)}
       </div>
     </GlassCard>
   )

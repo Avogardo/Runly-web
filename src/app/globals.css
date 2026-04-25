@@ -3,8 +3,8 @@
 @theme inline {
   --color-background: #0b0b1e;
   --color-foreground: #ffffff;
-  --color-foreground-secondary: rgba(255, 255, 255, 0.55);
-  --color-foreground-muted: rgba(255, 255, 255, 0.35);
+  --color-foreground-secondary: rgba(255, 255, 255, 0.70);
+  --color-foreground-muted: rgba(255, 255, 255, 0.50);
 
   --color-runly-bg: #0b0b1e;
   --color-runly-accent: #a855f7;

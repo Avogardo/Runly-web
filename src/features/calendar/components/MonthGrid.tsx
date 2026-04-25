@@ -32,7 +32,7 @@ export const MonthGrid: FC<MonthGridProps> = ({
         {dayNames.map((name) => (
           <div
             key={name}
-            className="text-center text-[10px] sm:text-xs font-medium text-white/35 py-2 uppercase tracking-wider"
+            className="text-center text-[10px] sm:text-xs font-medium text-white/50 py-2 uppercase tracking-wider"
           >
             {name}
           </div>

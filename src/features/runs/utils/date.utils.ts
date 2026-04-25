@@ -5,9 +5,8 @@ export function getMonthDateRange(year: number, month: number): { start: Date; e
   }
 }
 
-export function formatDateTime(date: Date): string {
-  return date.toLocaleString('en-US', {
-    weekday: 'short',
+export function formatDateTime(date: Date, locale: string = 'en-US'): string {
+  return date.toLocaleString(locale, {
     month: 'short',
     day: 'numeric',
     year: 'numeric',

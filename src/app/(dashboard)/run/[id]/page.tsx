@@ -42,7 +42,6 @@ export default async function RunDetailPage({ params }: { params: Params }) {
     intervals: t('intervals.intervals'),
     heavyLabel: t('intervals.heavyLabel'),
     lightLabel: t('intervals.lightLabel'),
-    voiceEnabled: t('intervals.voiceEnabled'),
   }
 
   return (

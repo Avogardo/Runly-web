@@ -21,21 +21,21 @@ export const IntervalBreakdown: FC<IntervalBreakdownProps> = ({ intervals, label
       {/* Config summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">{labels.planned}</span>
+          <span className="text-xs text-white/55">{labels.planned}</span>
           <span className="text-white font-medium">
             {config.total} {labels.intervals}
           </span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">{labels.heavy}</span>
+          <span className="text-xs text-white/55">{labels.heavy}</span>
           <span className="text-white font-medium">{config.heavyDurationSec}s</span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">{labels.light}</span>
+          <span className="text-xs text-white/55">{labels.light}</span>
           <span className="text-white font-medium">{config.lightDurationSec}s</span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">{labels.completed}</span>
+          <span className="text-xs text-white/55">{labels.completed}</span>
           <span className="text-emerald-400 font-medium">
             {completed.length} / {config.total}
           </span>
@@ -62,9 +62,8 @@ export const IntervalBreakdown: FC<IntervalBreakdownProps> = ({ intervals, label
         ))}
       </div>
 
-      <div className="mt-3 text-xs text-white/35">
+      <div className="mt-3 text-xs text-white/55">
         {heavyCount} {labels.heavyLabel} · {lightCount} {labels.lightLabel}
-        {config.voiceEnabled && ` · 🔊 ${labels.voiceEnabled}`}
       </div>
     </GlassCard>
   )

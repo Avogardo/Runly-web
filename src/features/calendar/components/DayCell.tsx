@@ -52,7 +52,7 @@ export const DayCell: FC<DayCellProps> = ({
             {formatDistance(totalDistance)}
           </span>
           {runCount > 1 && (
-            <span className="text-[9px] sm:text-[10px] text-white/30 leading-none">
+            <span className="text-[9px] sm:text-[10px] text-white/45 leading-none">
               {runCount} {runsLabel}
             </span>
           )}

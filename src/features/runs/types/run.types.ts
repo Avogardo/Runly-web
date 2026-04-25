@@ -33,7 +33,6 @@ export type IntervalLabels = {
   intervals: string
   heavyLabel: string
   lightLabel: string
-  voiceEnabled: string
 }
 
 export type StatsLabels = {

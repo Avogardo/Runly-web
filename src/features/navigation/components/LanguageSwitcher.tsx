@@ -34,7 +34,7 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ currentLocale }) =
           className={`px-2 py-1 text-[10px] font-medium rounded-md transition-all duration-200 ${
             currentLocale === locale
               ? 'bg-purple-500/20 text-purple-300'
-              : 'text-white/40 hover:text-white/60'
+              : 'text-white/50 hover:text-white/70'
           }`}
         >
           {labels[locale]}

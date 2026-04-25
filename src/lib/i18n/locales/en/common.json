@@ -36,7 +36,6 @@
     "completed": "Completed",
     "intervals": "intervals",
     "heavyLabel": "heavy",
-    "lightLabel": "light",
-    "voiceEnabled": "voice enabled"
+    "lightLabel": "light"
   }
 }
