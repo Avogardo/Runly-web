@@ -6,7 +6,7 @@
   "unexpectedError": "Wystąpił nieoczekiwany błąd.",
   "runNotFound": "Nie znaleziono biegu",
   "runNotFoundDescription": "Ten bieg nie istnieje lub został usunięty.",
-  "footer": "Runly Web · Zbudowane z Next.js",
+  "footer": "Runly Web",
   "stats": {
     "distance": "Dystans",
     "duration": "Czas",

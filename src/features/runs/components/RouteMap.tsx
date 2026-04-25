@@ -55,7 +55,7 @@ export const RouteMap: FC<RouteMapProps> = ({ path }) => {
   if (!start || !end) return null
 
   return (
-    <div className="w-full h-80 sm:h-100 rounded-2xl overflow-hidden border border-surface-border shadow-[0_0_30px_rgba(168,85,247,0.08)] [&_.leaflet-control-attribution]:text-[8px] [&_.leaflet-control-attribution]:bg-black/40 [&_.leaflet-control-attribution]:text-white/30 [&_.leaflet-control-attribution]:backdrop-blur-sm [&_.leaflet-control-attribution_a]:text-white/40">
+    <div className="w-full h-80 sm:h-100 rounded-2xl overflow-hidden border border-surface-border shadow-[0_0_30px_rgba(168,85,247,0.08)] [&_.leaflet-control-attribution]:text-[8px] [&_.leaflet-control-attribution]:bg-black/50 [&_.leaflet-control-attribution]:text-white/60 [&_.leaflet-control-attribution]:backdrop-blur-sm [&_.leaflet-control-attribution_a]:text-white/70">
       <MapContainer
         center={start}
         zoom={MAP_DEFAULT_ZOOM}
@@ -63,8 +63,12 @@ export const RouteMap: FC<RouteMapProps> = ({ path }) => {
         zoomControl={false}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
+        />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
+          opacity={0.7}
         />
         <Polyline
           positions={positions}
