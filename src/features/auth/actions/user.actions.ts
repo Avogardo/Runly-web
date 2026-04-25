@@ -3,7 +3,6 @@
 import { signIn } from '@/lib/auth'
 import { createUser } from '@/features/auth/queries'
 import { registerSchema } from '@/features/auth'
-import { redirect } from 'next/navigation'
 import { AuthError } from 'next-auth'
 
 export type AuthActionState = {
@@ -32,17 +31,20 @@ export async function registerUser(
     return { error: 'emailTaken' }
   }
 
-  const signInResult = await signIn('credentials', {
-    email,
-    password,
-    redirect: false,
-  })
-
-  if (signInResult?.error) {
-    return { error: 'signInFailed' }
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirectTo: '/',
+    })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return { error: 'signInFailed' }
+    }
+    throw error
   }
 
-  redirect('/')
+  return null
 }
 
 export async function loginUser(
@@ -53,7 +55,7 @@ export async function loginUser(
     await signIn('credentials', {
       email: formData.get('email') as string,
       password: formData.get('password') as string,
-      redirect: false,
+      redirectTo: '/',
     })
   } catch (error) {
     if (error instanceof AuthError) {
@@ -62,5 +64,5 @@ export async function loginUser(
     throw error
   }
 
-  redirect('/')
+  return null
 }
