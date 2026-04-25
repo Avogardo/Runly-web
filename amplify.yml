@@ -4,6 +4,9 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - echo "DATABASE_URL=$DATABASE_URL" >> .env.production
+        - echo "AUTH_SECRET=$AUTH_SECRET" >> .env.production
+        - echo "AUTH_URL=$AUTH_URL" >> .env.production
     build:
       commands:
         - npx prisma generate
