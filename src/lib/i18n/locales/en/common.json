@@ -6,7 +6,7 @@
   "unexpectedError": "An unexpected error occurred.",
   "runNotFound": "Run not found",
   "runNotFoundDescription": "This run doesn't exist or may have been deleted.",
-  "footer": "Runly Web · Built with Next.js",
+  "footer": "Runly Web",
   "stats": {
     "distance": "Distance",
     "duration": "Duration",
