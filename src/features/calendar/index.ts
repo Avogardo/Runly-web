@@ -4,5 +4,4 @@ export {
   formatMonthYear,
   getCurrentYearMonth,
   getAdjacentMonths,
-  parseYearMonth,
 } from './utils'
