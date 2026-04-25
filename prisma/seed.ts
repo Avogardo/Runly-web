@@ -106,6 +106,8 @@ async function main() {
     { date: '2026-04-20', distance: 5800, duration: 1900, hasIntervals: false },
     { date: '2026-04-22', distance: 12100, duration: 3900, hasIntervals: false },
     { date: '2026-04-24', distance: 4000, duration: 1350, hasIntervals: true },
+    { date: '2026-04-24', distance: 7200, duration: 2300, hasIntervals: false },
+    { date: '2026-04-24', distance: 3100, duration: 1050, hasIntervals: true },
 
     { date: '2026-03-05', distance: 6200, duration: 2000, hasIntervals: false },
     { date: '2026-03-12', distance: 9500, duration: 3100, hasIntervals: true },
