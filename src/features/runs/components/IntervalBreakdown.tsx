@@ -1,26 +1,15 @@
 import { type FC } from 'react'
-import type { IntervalSummary } from '@/features/runs/types'
-import GlassCard from '@/components/ui/GlassCard'
+import { GlassCard } from '@/ui'
+
 import { INTERVAL_BAR_WIDTH_DIVISOR, INTERVAL_BAR_MIN_WIDTH_PX } from '../consts'
+import { IntervalLabels, IntervalSummary } from '../types'
 
-type IntervalLabels = {
-  title: string
-  planned: string
-  heavy: string
-  light: string
-  completed: string
-  intervals: string
-  heavyLabel: string
-  lightLabel: string
-  voiceEnabled: string
-}
-
-type Props = {
+type IntervalBreakdownProps = {
   intervals: IntervalSummary
   labels: IntervalLabels
 }
 
-export const IntervalBreakdown: FC<Props> = ({ intervals, labels }) => {
+export const IntervalBreakdown: FC<IntervalBreakdownProps> = ({ intervals, labels }) => {
   const { config, intervals: completed } = intervals
   const heavyCount = completed.filter((i) => i.type === 'heavy').length
   const lightCount = completed.filter((i) => i.type === 'light').length

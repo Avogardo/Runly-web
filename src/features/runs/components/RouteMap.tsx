@@ -4,7 +4,7 @@ import { type FC, useEffect } from 'react'
 import { MapContainer, TileLayer, Polyline, Marker, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import type { Coordinate } from '../types'
+
 import {
   MAP_DEFAULT_ZOOM,
   MAP_FIT_BOUNDS_PADDING,
@@ -16,8 +16,9 @@ import {
   START_MARKER_COLOR,
   END_MARKER_COLOR,
 } from '../consts'
+import type { Coordinate } from '../types'
 
-type Props = {
+type RouteMapProps = {
   path: Coordinate[]
 }
 
@@ -33,7 +34,6 @@ function createCircleIcon(color: string) {
 const startIcon = createCircleIcon(START_MARKER_COLOR)
 const endIcon = createCircleIcon(END_MARKER_COLOR)
 
-// Auto-fit map to route bounds
 function FitBounds({ positions }: { positions: L.LatLngExpression[] }) {
   const map = useMap()
 
@@ -47,7 +47,7 @@ function FitBounds({ positions }: { positions: L.LatLngExpression[] }) {
   return null
 }
 
-export const RouteMap: FC<Props> = ({ path }) => {
+export const RouteMap: FC<RouteMapProps> = ({ path }) => {
   const positions: L.LatLngExpression[] = path.map((p) => [p.latitude, p.longitude])
   const start = positions[0]
   const end = positions[positions.length - 1]

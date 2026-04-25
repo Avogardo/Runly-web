@@ -3,13 +3,12 @@
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n/client'
 
-export default function DashboardError({
-  error,
-  reset,
-}: {
+type DashboardErrorProps = {
   error: Error & { digest?: string }
   reset: () => void
-}) {
+}
+
+export default function DashboardError({ error, reset }: DashboardErrorProps) {
   const { t } = useTranslation('common')
 
   return (

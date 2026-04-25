@@ -3,9 +3,8 @@ import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
-// ── Seed constants ──────────────────────────────────────
 const BCRYPT_SALT_ROUNDS = 12
-const SEED_CENTER_LAT = 50.0647 // Kraków, Poland
+const SEED_CENTER_LAT = 50.0647 // Krakow, Poland
 const SEED_CENTER_LNG = 19.945
 const PATH_MIN_RADIUS = 0.005 // ~0.5km
 const PATH_RADIUS_JITTER = 0.01 // up to ~1.5km total
@@ -19,7 +18,6 @@ const MS_IN_SECOND = 1_000
 
 const MINUTES_IN_HOUR = 60
 
-// ── Interval defaults ────────────────────────────────────
 const HEAVY_DURATION_SEC = 60
 const LIGHT_DURATION_SEC = 90
 const MIN_COMPLETED_INTERVALS = 3
@@ -46,9 +44,6 @@ function generatePath(
   return path
 }
 
-/**
- * Generate fake interval data for some runs.
- */
 function generateIntervals(durationSec: number) {
   const cycleDuration = HEAVY_DURATION_SEC + LIGHT_DURATION_SEC
   const total = Math.floor(durationSec / cycleDuration)
@@ -84,11 +79,9 @@ function generateIntervals(durationSec: number) {
 async function main() {
   console.log('🌱 Seeding database...')
 
-  // Clear existing data
   await prisma.run.deleteMany()
   await prisma.user.deleteMany()
 
-  // Create seed user
   const hashedPassword = await hash('password123', BCRYPT_SALT_ROUNDS)
   const user = await prisma.user.create({
     data: {
@@ -103,7 +96,6 @@ async function main() {
   const centerLng = SEED_CENTER_LNG
 
   const runs = [
-    // April 2026 runs
     { date: '2026-04-02', distance: 5200, duration: 1680, hasIntervals: false },
     { date: '2026-04-05', distance: 8100, duration: 2700, hasIntervals: true },
     { date: '2026-04-07', distance: 3500, duration: 1200, hasIntervals: false },
@@ -114,7 +106,7 @@ async function main() {
     { date: '2026-04-20', distance: 5800, duration: 1900, hasIntervals: false },
     { date: '2026-04-22', distance: 12100, duration: 3900, hasIntervals: false },
     { date: '2026-04-24', distance: 4000, duration: 1350, hasIntervals: true },
-    // March 2026 runs
+
     { date: '2026-03-05', distance: 6200, duration: 2000, hasIntervals: false },
     { date: '2026-03-12', distance: 9500, duration: 3100, hasIntervals: true },
     { date: '2026-03-18', distance: 3800, duration: 1300, hasIntervals: false },

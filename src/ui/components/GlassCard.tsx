@@ -1,12 +1,12 @@
-import { type FC } from 'react'
+import { ReactNode, FC } from 'react'
 import { cn } from '@/utils'
 
-type Props = {
-  children: React.ReactNode
+type GlassCardProps = {
+  children: ReactNode
   className?: string
 }
 
-const GlassCard: FC<Props> = ({ children, className }) => {
+export const GlassCard: FC<GlassCardProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
@@ -18,5 +18,3 @@ const GlassCard: FC<Props> = ({ children, className }) => {
     </div>
   )
 }
-
-export default GlassCard

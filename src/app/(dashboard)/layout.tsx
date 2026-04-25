@@ -1,11 +1,11 @@
+import { ReactNode } from 'react'
 import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
-import UserMenu from '@/components/ui/UserMenu'
-import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
+import { UserMenu, LanguageSwitcher } from '@/features/navigation'
 import { getServerTranslation, getLocale } from '@/lib/i18n/server'
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const session = await auth()
   if (!session?.user) redirect('/login')
 

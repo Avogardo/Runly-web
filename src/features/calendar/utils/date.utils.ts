@@ -1,12 +1,7 @@
-import { CalendarDay } from '../types'
 import { DAYS_IN_WEEK, LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'
+import { parseYearMonth } from '@/utils'
 
-export function parseYearMonth(yearMonth: string): { year: number; month: number } {
-  return {
-    year: Number(yearMonth.slice(0, 4)),
-    month: Number(yearMonth.slice(5, 7)),
-  }
-}
+import { CalendarDay } from '../types'
 
 export function getCurrentYearMonth(): string {
   const now = new Date()
@@ -43,12 +38,10 @@ export function getCalendarDays(year: number, month: number): CalendarDay[] {
 
   const days: CalendarDay[] = []
 
-  // Leading empty cells
   for (let i = 0; i < startOffset; i++) {
     days.push({ dayNumber: 0, isToday: false, isCurrentMonth: false })
   }
 
-  // Days 1..daysInMonth
   for (let d = 1; d <= daysInMonth; d++) {
     days.push({
       dayNumber: d,
@@ -57,7 +50,6 @@ export function getCalendarDays(year: number, month: number): CalendarDay[] {
     })
   }
 
-  // Trailing empty cells to complete last row
   const trailing = (DAYS_IN_WEEK - (days.length % DAYS_IN_WEEK)) % DAYS_IN_WEEK
   for (let i = 0; i < trailing; i++) {
     days.push({ dayNumber: 0, isToday: false, isCurrentMonth: false })

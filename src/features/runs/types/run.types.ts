@@ -23,3 +23,22 @@ export type IntervalSummary = {
   config: IntervalConfig
   intervals: Interval[]
 }
+
+export type IntervalLabels = {
+  title: string
+  planned: string
+  heavy: string
+  light: string
+  completed: string
+  intervals: string
+  heavyLabel: string
+  lightLabel: string
+  voiceEnabled: string
+}
+
+export type StatsLabels = {
+  distance: string
+  duration: string
+  avgPace: string
+  date: string
+}

@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Link from 'next/link'
 import { formatDistance, cn } from '@/utils'
 
-type Props = {
+type DayCellProps = {
   dayNumber: number
   isToday: boolean
   isSelected: boolean
@@ -12,7 +12,7 @@ type Props = {
   runsLabel: string
 }
 
-export const DayCell: FC<Props> = ({
+export const DayCell: FC<DayCellProps> = ({
   dayNumber,
   isToday,
   isSelected,
@@ -37,7 +37,6 @@ export const DayCell: FC<Props> = ({
               : 'bg-white/[0.02] hover:bg-white/[0.06]',
       )}
     >
-      {/* Day number */}
       <span
         className={cn(
           'text-xs sm:text-sm font-semibold leading-none',
@@ -47,7 +46,6 @@ export const DayCell: FC<Props> = ({
         {dayNumber}
       </span>
 
-      {/* Run stats */}
       {runCount > 0 && (
         <div className="flex flex-col gap-0.5 mt-auto">
           <span className="text-[10px] sm:text-xs text-emerald-400 font-medium leading-none truncate">
@@ -61,7 +59,6 @@ export const DayCell: FC<Props> = ({
         </div>
       )}
 
-      {/* Run dot indicator */}
       {runCount > 0 && (
         <span
           className={cn(

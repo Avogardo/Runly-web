@@ -28,7 +28,7 @@ export function useTranslation(
   const { i18n } = ret
 
   if (runsOnServerSide && options?.lng && i18n.resolvedLanguage !== options.lng) {
-    i18n.changeLanguage(options.lng)
+    void i18n.changeLanguage(options.lng)
   }
 
   const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage)
@@ -40,7 +40,7 @@ export function useTranslation(
 
   useEffect(() => {
     if (!options?.lng || i18n.resolvedLanguage === options.lng) return
-    i18n.changeLanguage(options.lng)
+    void i18n.changeLanguage(options.lng)
   }, [options?.lng, i18n])
 
   return { t: ret.t, i18n }

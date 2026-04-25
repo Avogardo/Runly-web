@@ -3,6 +3,5 @@ export {
   getAdjacentMonths,
   getCurrentYearMonth,
   formatMonthYear,
-  parseYearMonth,
   formatTime,
 } from './date.utils'

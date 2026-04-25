@@ -18,14 +18,12 @@ export default function LoginPage() {
 
   return (
     <div className="w-full max-w-sm">
-      {/* Logo */}
       <div className="text-center mb-8">
         <span className="text-5xl">🏃</span>
         <h1 className="text-2xl font-bold text-white mt-3">{t('welcome')}</h1>
         <p className="text-foreground-muted text-sm mt-1">{t('signInSubtitle')}</p>
       </div>
 
-      {/* Glass form */}
       <form
         action={action}
         className="bg-surface backdrop-blur-xl border border-surface-border rounded-2xl p-6 flex flex-col gap-4"

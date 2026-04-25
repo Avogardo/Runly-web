@@ -16,7 +16,6 @@ export default auth((req) => {
   const isPublicApi = PUBLIC_API_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const isApiRoute = pathname.startsWith('/api/')
 
-  // — Language detection (cookie-based) —
   let response: NextResponse | undefined
 
   const localeCookie = req.cookies.get(cookieName)?.value
@@ -25,8 +24,6 @@ export default auth((req) => {
     response = NextResponse.next()
     response.cookies.set(cookieName, detected, { path: '/', maxAge: SECONDS_IN_YEAR })
   }
-
-  // — Auth logic —
 
   if (isPublicApi) {
     return response ?? NextResponse.next()

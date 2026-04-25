@@ -1,18 +1,21 @@
 import { auth } from '@/lib/auth'
-import { getRunsByMonth } from '@/features/runs/queries'
+import { getServerTranslation, getLocale } from '@/lib/i18n/server'
+import { getRunsByMonth } from '@/features/runs'
 import {
-  parseYearMonth,
   getCurrentYearMonth,
   getCalendarDays,
   getAdjacentMonths,
   formatMonthYear,
 } from '@/features/calendar/utils'
 import { CalendarNav, MonthGrid, DayRunsList } from '@/features/calendar'
-import { getServerTranslation, getLocale } from '@/lib/i18n/server'
+import { parseYearMonth } from '@/utils'
 
 type SearchParams = Promise<{ month?: string; day?: string }>
+type HomePageProps = {
+  searchParams: SearchParams
+}
 
-export default async function HomePage({ searchParams }: { searchParams: SearchParams }) {
+export default async function HomePage({ searchParams }: HomePageProps) {
   const session = (await auth())!
   const userId = session.user.id
 
@@ -27,7 +30,6 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
 
   const runs = await getRunsByMonth(userId, year, month)
 
-  // Group runs by UTC day-of-month
   const runsByDay = new Map<number, typeof runs>()
   for (const run of runs) {
     const day = new Date(run.startedAt).getUTCDate()

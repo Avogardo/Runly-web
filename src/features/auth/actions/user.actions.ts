@@ -6,13 +6,9 @@ import { registerSchema } from '@/features/auth'
 import { redirect } from 'next/navigation'
 import { AuthError } from 'next-auth'
 
-// ── Types ───────────────────────────────────────────────
-
 type AuthActionState = {
   error?: string
 } | null
-
-// ── Register ────────────────────────────────────────────
 
 export async function registerUser(
   _prevState: AuthActionState,
@@ -48,8 +44,6 @@ export async function registerUser(
 
   redirect('/')
 }
-
-// ── Login ───────────────────────────────────────────────
 
 export async function loginUser(
   _prevState: AuthActionState,

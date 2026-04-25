@@ -1,8 +1,9 @@
 import { createInstance, type i18n, type TFunction } from 'i18next'
+import { cookies } from 'next/headers'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next } from 'react-i18next/initReactI18next'
+
 import { getOptions, fallbackLng, cookieName } from './settings'
-import { cookies } from 'next/headers'
 
 async function initI18next(lng: string, ns: string | string[]): Promise<i18n> {
   const i18nInstance = createInstance()

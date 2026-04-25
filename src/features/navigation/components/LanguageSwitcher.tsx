@@ -1,10 +1,10 @@
 'use client'
 
-import { type FC, useTransition } from 'react'
+import { FC, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { languages, cookieName, type Locale } from '@/lib/i18n/settings'
 
-type Props = {
+type LanguageSwitcherProps = {
   currentLocale: string
 }
 
@@ -13,7 +13,7 @@ const labels: Record<Locale, string> = {
   pl: 'PL',
 }
 
-export const LanguageSwitcher: FC<Props> = ({ currentLocale }) => {
+export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ currentLocale }) => {
   const router = useRouter()
   const [pending, startTransition] = useTransition()
 

@@ -1,8 +1,5 @@
 import { SECONDS_IN_HOUR, SECONDS_IN_MINUTE, METERS_IN_KM } from '@/consts'
 
-/**
- * Format duration in seconds to HH:MM:SS or MM:SS
- */
 export function formatDuration(seconds: number): string {
   const h = Math.floor(seconds / SECONDS_IN_HOUR)
   const m = Math.floor((seconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE)
@@ -14,16 +11,10 @@ export function formatDuration(seconds: number): string {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
-/**
- * Format distance in meters to km with 2 decimal places
- */
 export function formatDistance(meters: number): string {
   return `${(meters / METERS_IN_KM).toFixed(2)} km`
 }
 
-/**
- * Format pace as min/km from distance (meters) and duration (seconds)
- */
 export function formatPace(distanceMeters: number, durationSeconds: number): string {
   if (distanceMeters === 0 || durationSeconds === 0) return '--:--'
   const paceSeconds = durationSeconds / (distanceMeters / METERS_IN_KM)

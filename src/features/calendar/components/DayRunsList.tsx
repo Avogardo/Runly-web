@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Link from 'next/link'
 import { formatDistance, formatDuration, formatPace } from '@/utils'
-import GlassCard from '@/components/ui/GlassCard'
+import { GlassCard } from '@/ui'
 import type { RunListItem } from '@/features/runs/queries'
 import { formatTime } from '../utils'
 import { LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'

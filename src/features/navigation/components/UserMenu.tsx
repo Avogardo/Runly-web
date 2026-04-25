@@ -1,13 +1,13 @@
-import { type FC } from 'react'
+import { FC } from 'react'
 import { signOut } from '@/lib/auth'
 
-type Props = {
-  userName: string | null | undefined
-  userEmail: string | null | undefined
+type UserMenuProps = {
   signOutLabel: string
+  userName?: string | null
+  userEmail?: string | null
 }
 
-const UserMenu: FC<Props> = ({ userName, userEmail, signOutLabel }) => {
+export const UserMenu: FC<UserMenuProps> = ({ userName, userEmail, signOutLabel }) => {
   return (
     <div className="flex items-center gap-3">
       <span className="text-xs text-white/40 hidden sm:block">{userName ?? userEmail}</span>
@@ -27,5 +27,3 @@ const UserMenu: FC<Props> = ({ userName, userEmail, signOutLabel }) => {
     </div>
   )
 }
-
-export default UserMenu

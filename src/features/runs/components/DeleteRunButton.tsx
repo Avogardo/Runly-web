@@ -1,6 +1,7 @@
 'use client'
 
-import { type FC, useActionState } from 'react'
+import { SubmitEvent, FC, useActionState } from 'react'
+
 import { deleteRun } from '../actions'
 
 type Props = {
@@ -18,7 +19,7 @@ export const DeleteRunButton: FC<Props> = ({
 }) => {
   const [state, action, pending] = useActionState(deleteRun, null)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     if (!confirm(confirmMessage)) {
       e.preventDefault()
     }
