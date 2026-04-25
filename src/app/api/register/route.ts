@@ -20,18 +20,12 @@ export async function POST(request: NextRequest) {
     const user = await createUser(email, password, name)
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Email already registered' },
-        { status: 409 },
-      )
+      return NextResponse.json({ error: 'Email already registered' }, { status: 409 })
     }
 
     return NextResponse.json(user, { status: 201 })
   } catch (error) {
     console.error('POST /api/register error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

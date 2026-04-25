@@ -13,24 +13,15 @@ const btnClass =
 export const CalendarNav: FC<Props> = ({ monthTitle, prevMonth, nextMonth }) => {
   return (
     <div className="flex items-center justify-between">
-      <Link
-        href={`/?month=${prevMonth}`}
-        className={btnClass}
-        aria-label="Previous month"
-      >
+      <Link href={`/?month=${prevMonth}`} className={btnClass} aria-label="Previous month">
         ←
       </Link>
 
       <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{monthTitle}</h2>
 
-      <Link
-        href={`/?month=${nextMonth}`}
-        className={btnClass}
-        aria-label="Next month"
-      >
+      <Link href={`/?month=${nextMonth}`} className={btnClass} aria-label="Next month">
         →
       </Link>
     </div>
   )
 }
-

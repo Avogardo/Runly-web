@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { auth } from '@/lib/auth'
 import { getRunById } from '@/features/runs/queries'
-import {RunStats, DeleteRunButton, IntervalBreakdown, RouteMapWrapper} from '@/features/runs'
+import { RunStats, DeleteRunButton, IntervalBreakdown, RouteMapWrapper } from '@/features/runs'
 import { getServerTranslation, getLocale } from '@/lib/i18n/server'
 
 type Params = Promise<{ id: string }>

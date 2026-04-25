@@ -1,1 +1,1 @@
-export {createUser} from './user.queries'
+export { createUser } from './user.queries'

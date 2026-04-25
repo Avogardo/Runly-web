@@ -66,7 +66,14 @@ export const RouteMap: FC<Props> = ({ path }) => {
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
         />
-        <Polyline positions={positions} pathOptions={{ color: ROUTE_POLYLINE_COLOR, weight: ROUTE_POLYLINE_WEIGHT, opacity: ROUTE_POLYLINE_OPACITY }} />
+        <Polyline
+          positions={positions}
+          pathOptions={{
+            color: ROUTE_POLYLINE_COLOR,
+            weight: ROUTE_POLYLINE_WEIGHT,
+            opacity: ROUTE_POLYLINE_OPACITY,
+          }}
+        />
         <Marker position={start} icon={startIcon} />
         <Marker position={end} icon={endIcon} />
         <FitBounds positions={positions} />

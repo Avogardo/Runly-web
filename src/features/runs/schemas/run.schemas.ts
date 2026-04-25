@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import {coordinateSchema} from "./map.schemas";
+import { coordinateSchema } from './map.schemas'
 
 export const intervalConfigSchema = z.object({
   total: z.number().int().positive(),

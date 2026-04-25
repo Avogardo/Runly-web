@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
 import type { RunListItem } from '@/features/runs/queries'
-import {formatTime} from "../utils";
+import { formatTime } from '../utils'
 import { LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'
 
 type Props = {
@@ -17,14 +17,26 @@ type Props = {
   paceLabel: string
 }
 
-export const DayRunsList: FC<Props> = ({ day, month, year, runs, lng, noRunsLabel, durationLabel, paceLabel }) => {
-  const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(LOCALE_MAP[lng] ?? DEFAULT_LOCALE, {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  })
+export const DayRunsList: FC<Props> = ({
+  day,
+  month,
+  year,
+  runs,
+  lng,
+  noRunsLabel,
+  durationLabel,
+  paceLabel,
+}) => {
+  const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(
+    LOCALE_MAP[lng] ?? DEFAULT_LOCALE,
+    {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      timeZone: 'UTC',
+    },
+  )
 
   return (
     <GlassCard className="p-5 sm:p-6">
@@ -49,13 +61,17 @@ export const DayRunsList: FC<Props> = ({ day, month, year, runs, lng, noRunsLabe
 
               <div className="flex gap-4 sm:gap-6 text-right">
                 <div className="flex flex-col gap-1">
-                  <span className="text-foreground-muted text-[10px] sm:text-xs uppercase tracking-wider">{durationLabel}</span>
+                  <span className="text-foreground-muted text-[10px] sm:text-xs uppercase tracking-wider">
+                    {durationLabel}
+                  </span>
                   <span className="text-white/80 text-sm font-medium">
                     {formatDuration(run.duration)}
                   </span>
                 </div>
                 <div className="hidden sm:flex flex-col gap-1">
-                  <span className="text-foreground-muted text-xs uppercase tracking-wider">{paceLabel}</span>
+                  <span className="text-foreground-muted text-xs uppercase tracking-wider">
+                    {paceLabel}
+                  </span>
                   <span className="text-white/80 text-sm font-medium">
                     {formatPace(run.distance, run.duration)}
                   </span>
@@ -72,4 +88,3 @@ export const DayRunsList: FC<Props> = ({ day, month, year, runs, lng, noRunsLabe
     </GlassCard>
   )
 }
-

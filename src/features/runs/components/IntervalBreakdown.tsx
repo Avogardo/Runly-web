@@ -33,7 +33,9 @@ export const IntervalBreakdown: FC<Props> = ({ intervals, labels }) => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-white/40">{labels.planned}</span>
-          <span className="text-white font-medium">{config.total} {labels.intervals}</span>
+          <span className="text-white font-medium">
+            {config.total} {labels.intervals}
+          </span>
         </div>
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-white/40">{labels.heavy}</span>
@@ -45,7 +47,9 @@ export const IntervalBreakdown: FC<Props> = ({ intervals, labels }) => {
         </div>
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-white/40">{labels.completed}</span>
-          <span className="text-emerald-400 font-medium">{completed.length} / {config.total}</span>
+          <span className="text-emerald-400 font-medium">
+            {completed.length} / {config.total}
+          </span>
         </div>
       </div>
 
@@ -59,7 +63,9 @@ export const IntervalBreakdown: FC<Props> = ({ intervals, labels }) => {
                 ? 'bg-purple-500/30 text-purple-300 border border-purple-500/30'
                 : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/20'
             }`}
-            style={{ width: `${Math.max(interval.duration / INTERVAL_BAR_WIDTH_DIVISOR, INTERVAL_BAR_MIN_WIDTH_PX)}px` }}
+            style={{
+              width: `${Math.max(interval.duration / INTERVAL_BAR_WIDTH_DIVISOR, INTERVAL_BAR_MIN_WIDTH_PX)}px`,
+            }}
             title={`${interval.type} — ${interval.duration}s`}
           >
             {interval.type === 'heavy' ? 'H' : 'L'}

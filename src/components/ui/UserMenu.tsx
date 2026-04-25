@@ -10,9 +10,7 @@ type Props = {
 const UserMenu: FC<Props> = ({ userName, userEmail, signOutLabel }) => {
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs text-white/40 hidden sm:block">
-        {userName ?? userEmail}
-      </span>
+      <span className="text-xs text-white/40 hidden sm:block">{userName ?? userEmail}</span>
       <form
         action={async () => {
           'use server'

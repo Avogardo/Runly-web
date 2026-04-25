@@ -43,4 +43,3 @@ export const LanguageSwitcher: FC<Props> = ({ currentLocale }) => {
     </div>
   )
 }
-

@@ -10,7 +10,12 @@ type Props = {
   confirmMessage: string
 }
 
-export const DeleteRunButton: FC<Props> = ({ runId, deleteLabel, deletingLabel, confirmMessage }) => {
+export const DeleteRunButton: FC<Props> = ({
+  runId,
+  deleteLabel,
+  deletingLabel,
+  confirmMessage,
+}) => {
   const [state, action, pending] = useActionState(deleteRun, null)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -22,9 +27,7 @@ export const DeleteRunButton: FC<Props> = ({ runId, deleteLabel, deletingLabel, 
   return (
     <form action={action} onSubmit={handleSubmit}>
       <input type="hidden" name="runId" value={runId} />
-      {state?.error && (
-        <span className="text-red-400 text-xs mr-2">{state.error}</span>
-      )}
+      {state?.error && <span className="text-red-400 text-xs mr-2">{state.error}</span>}
       <button
         type="submit"
         disabled={pending}

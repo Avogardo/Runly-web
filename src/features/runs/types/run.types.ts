@@ -23,5 +23,3 @@ export type IntervalSummary = {
   config: IntervalConfig
   intervals: Interval[]
 }
-
-

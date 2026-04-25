@@ -7,7 +7,7 @@ import {
   getAdjacentMonths,
   formatMonthYear,
 } from '@/features/calendar/utils'
-import {CalendarNav, MonthGrid, DayRunsList} from '@/features/calendar'
+import { CalendarNav, MonthGrid, DayRunsList } from '@/features/calendar'
 import { getServerTranslation, getLocale } from '@/lib/i18n/server'
 
 type SearchParams = Promise<{ month?: string; day?: string }>
@@ -45,8 +45,13 @@ export default async function HomePage({ searchParams }: { searchParams: SearchP
   const selectedDayRuns = selectedDay !== null ? (runsByDay.get(selectedDay) ?? []) : []
 
   const dayNames = [
-    t('days.mon'), t('days.tue'), t('days.wed'), t('days.thu'),
-    t('days.fri'), t('days.sat'), t('days.sun'),
+    t('days.mon'),
+    t('days.tue'),
+    t('days.wed'),
+    t('days.thu'),
+    t('days.fri'),
+    t('days.sat'),
+    t('days.sun'),
   ]
 
   return (

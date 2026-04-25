@@ -16,4 +16,3 @@ export async function createUser(email: string, password: string, name?: string)
     select: { id: true, email: true, name: true, createdAt: true },
   })
 }
-

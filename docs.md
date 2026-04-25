@@ -158,10 +158,10 @@ type IntervalSummary = {
 
 type Run = {
   id: string
-  startedAt: string      // ISO 8601
-  endedAt: string        // ISO 8601
-  distance: number       // meters
-  duration: number       // seconds
+  startedAt: string // ISO 8601
+  endedAt: string // ISO 8601
+  distance: number // meters
+  duration: number // seconds
   path: Coordinate[]
   intervals?: IntervalSummary
 }
@@ -189,20 +189,20 @@ model Run {
 
 ## 🛠️ 7. Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript 5 (strict) |
-| Styling | Tailwind CSS v4 |
-| ORM | Prisma |
-| Database | PostgreSQL (Neon — serverless, free tier) |
-| Map | Leaflet + react-leaflet |
-| Validation | Zod |
-| Auth (v2) | NextAuth.js |
-| Linting | ESLint + Prettier |
-| Testing | Vitest + Testing Library |
-| Deployment | AWS Amplify |
-| CI/CD | GitHub Actions |
+| Layer      | Technology                                |
+| ---------- | ----------------------------------------- |
+| Framework  | Next.js 15 (App Router)                   |
+| Language   | TypeScript 5 (strict)                     |
+| Styling    | Tailwind CSS v4                           |
+| ORM        | Prisma                                    |
+| Database   | PostgreSQL (Neon — serverless, free tier) |
+| Map        | Leaflet + react-leaflet                   |
+| Validation | Zod                                       |
+| Auth (v2)  | NextAuth.js                               |
+| Linting    | ESLint + Prettier                         |
+| Testing    | Vitest + Testing Library                  |
+| Deployment | AWS Amplify                               |
+| CI/CD      | GitHub Actions                            |
 
 ---
 
@@ -221,11 +221,11 @@ const theme = {
   textSecondary: 'rgba(255, 255, 255, 0.55)',
   textMuted: 'rgba(255, 255, 255, 0.35)',
 
-  accent: '#A855F7',      // purple
-  success: '#34D399',      // emerald
-  warning: '#FBBF24',      // amber
-  danger: '#F87171',       // red
-  info: '#818CF8',         // indigo
+  accent: '#A855F7', // purple
+  success: '#34D399', // emerald
+  warning: '#FBBF24', // amber
+  danger: '#F87171', // red
+  info: '#818CF8', // indigo
 }
 ```
 
@@ -251,7 +251,7 @@ colors: {
 .glass-card {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
 }
 ```
@@ -262,19 +262,19 @@ Tailwind equivalent: `bg-white/[0.06] backdrop-blur-xl border border-white/10 ro
 
 ## ☁️ 9. Deployment Strategy
 
-| Option | Pros | Cons | Recommended |
-|---|---|---|---|
-| **AWS Amplify** | Auto-builds from GitHub, supports Next.js SSR, free tier | Vendor lock-in to Amplify config | ✅ Yes (simplest) |
-| Docker on ECS/Fargate | Full control, real-world infra | More complex setup | For advanced phase |
-| Vercel | Best Next.js DX, zero config | Not AWS (requirement) | ❌ |
+| Option                | Pros                                                     | Cons                             | Recommended        |
+| --------------------- | -------------------------------------------------------- | -------------------------------- | ------------------ |
+| **AWS Amplify**       | Auto-builds from GitHub, supports Next.js SSR, free tier | Vendor lock-in to Amplify config | ✅ Yes (simplest)  |
+| Docker on ECS/Fargate | Full control, real-world infra                           | More complex setup               | For advanced phase |
+| Vercel                | Best Next.js DX, zero config                             | Not AWS (requirement)            | ❌                 |
 
 ### Database Hosting
 
-| Option | Pros | Cons | Recommended |
-|---|---|---|---|
-| **Neon** | Serverless PostgreSQL, free tier, easy setup | External to AWS | ✅ Yes (MVP) |
-| AWS RDS | Full AWS ecosystem | Costs, more setup | For production |
-| Supabase | Postgres + API + Auth | Overkill for this use case | ❌ |
+| Option   | Pros                                         | Cons                       | Recommended    |
+| -------- | -------------------------------------------- | -------------------------- | -------------- |
+| **Neon** | Serverless PostgreSQL, free tier, easy setup | External to AWS            | ✅ Yes (MVP)   |
+| AWS RDS  | Full AWS ecosystem                           | Costs, more setup          | For production |
+| Supabase | Postgres + API + Auth                        | Overkill for this use case | ❌             |
 
 ---
 
@@ -301,4 +301,3 @@ push to main / PR
 - **PR checks**: lint + typecheck + test + build (block merge on failure)
 - **Deploy**: auto-trigger on push to `main` via Amplify webhook or GitHub Actions
 - **Secrets**: `DATABASE_URL`, `NEXTAUTH_SECRET` stored in GitHub Secrets + Amplify env vars
-

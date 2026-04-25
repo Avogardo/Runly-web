@@ -5,4 +5,3 @@ export const LOCALE_MAP: Record<string, string> = {
 }
 
 export const DEFAULT_LOCALE = 'en-US'
-

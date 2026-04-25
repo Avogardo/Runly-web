@@ -125,7 +125,9 @@ async function main() {
   for (const run of runs) {
     const startHour = SEED_HOUR_MIN + Math.floor(Math.random() * SEED_HOUR_RANGE)
     const startMin = Math.floor(Math.random() * MINUTES_IN_HOUR)
-    const startedAt = new Date(`${run.date}T${String(startHour).padStart(2, '0')}:${String(startMin).padStart(2, '0')}:00Z`)
+    const startedAt = new Date(
+      `${run.date}T${String(startHour).padStart(2, '0')}:${String(startMin).padStart(2, '0')}:00Z`,
+    )
     const endedAt = new Date(startedAt.getTime() + run.duration * MS_IN_SECOND)
 
     const pathPoints = Math.floor(run.duration / (PATH_POINT_INTERVAL_MS / MS_IN_SECOND))
@@ -159,4 +161,3 @@ main()
     await prisma.$disconnect()
     process.exit(1)
   })
-

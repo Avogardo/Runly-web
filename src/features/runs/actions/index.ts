@@ -1,1 +1,1 @@
-export {deleteRun} from './run.actions'
+export { deleteRun } from './run.actions'

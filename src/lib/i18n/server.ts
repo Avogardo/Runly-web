@@ -10,8 +10,7 @@ async function initI18next(lng: string, ns: string | string[]): Promise<i18n> {
     .use(initReactI18next)
     .use(
       resourcesToBackend(
-        (language: string, namespace: string) =>
-          import(`./locales/${language}/${namespace}.json`),
+        (language: string, namespace: string) => import(`./locales/${language}/${namespace}.json`),
       ),
     )
     .init(getOptions(lng, ns))
@@ -27,7 +26,7 @@ export async function getServerTranslation(
   ns: string | string[] = 'common',
   options?: { lng?: string },
 ): Promise<{ t: TFunction; lng: string; i18n: i18n }> {
-  const lng = options?.lng ?? await getLocale()
+  const lng = options?.lng ?? (await getLocale())
   const i18nInstance = await initI18next(lng, ns)
   return {
     t: i18nInstance.getFixedT(lng, Array.isArray(ns) ? ns[0] : ns),
@@ -35,4 +34,3 @@ export async function getServerTranslation(
     i18n: i18nInstance,
   }
 }
-

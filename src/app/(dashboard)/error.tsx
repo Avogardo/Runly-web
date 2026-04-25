@@ -16,9 +16,7 @@ export default function DashboardError({
     <div className="flex flex-col items-center justify-center gap-4 py-20">
       <span className="text-6xl">⚠️</span>
       <h2 className="text-2xl font-bold text-white">{t('somethingWentWrong')}</h2>
-      <p className="text-white/40 text-center max-w-md">
-        {error.message || t('unexpectedError')}
-      </p>
+      <p className="text-white/40 text-center max-w-md">{error.message || t('unexpectedError')}</p>
       <div className="flex gap-3 mt-4">
         <button
           onClick={reset}

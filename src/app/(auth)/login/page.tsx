@@ -52,7 +52,10 @@ export default function LoginPage() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="password" className="text-xs text-foreground-muted uppercase tracking-wider">
+          <label
+            htmlFor="password"
+            className="text-xs text-foreground-muted uppercase tracking-wider"
+          >
             {t('password')}
           </label>
           <input
@@ -76,7 +79,10 @@ export default function LoginPage() {
 
         <p className="text-center text-xs text-foreground-muted mt-1">
           {t('noAccount')}{' '}
-          <Link href="/register" className="text-purple-400 hover:text-purple-300 transition-colors">
+          <Link
+            href="/register"
+            className="text-purple-400 hover:text-purple-300 transition-colors"
+          >
             {t('createOne')}
           </Link>
         </p>

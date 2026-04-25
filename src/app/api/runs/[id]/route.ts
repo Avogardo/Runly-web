@@ -22,10 +22,7 @@ export async function GET(_request: Request, { params }: { params: Params }) {
     return NextResponse.json(run)
   } catch (error) {
     console.error('GET /api/runs/[id] error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
@@ -43,19 +40,12 @@ export async function DELETE(_request: Request, { params }: { params: Params }) 
     })
 
     if (deleted.count === 0) {
-      return NextResponse.json(
-        { error: 'Run not found' },
-        { status: 404 },
-      )
+      return NextResponse.json({ error: 'Run not found' }, { status: 404 })
     }
-
 
     return NextResponse.json({ message: 'Run deleted successfully' })
   } catch (error) {
     console.error('DELETE /api/runs/[id] error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

@@ -38,21 +38,48 @@ export default function RegisterPage() {
           <label htmlFor="name" className="text-xs text-foreground-muted uppercase tracking-wider">
             {t('name')} <span className="text-white/20">{t('optional')}</span>
           </label>
-          <input id="name" name="name" type="text" autoComplete="name" className={inputClass} placeholder="Runner" />
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            className={inputClass}
+            placeholder="Runner"
+          />
         </div>
 
         <div className="flex flex-col gap-1.5">
           <label htmlFor="email" className="text-xs text-foreground-muted uppercase tracking-wider">
             {t('email')}
           </label>
-          <input id="email" name="email" type="email" required autoComplete="email" className={inputClass} placeholder="runner@runly.app" />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className={inputClass}
+            placeholder="runner@runly.app"
+          />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="password" className="text-xs text-foreground-muted uppercase tracking-wider">
+          <label
+            htmlFor="password"
+            className="text-xs text-foreground-muted uppercase tracking-wider"
+          >
             {t('password')}
           </label>
-          <input id="password" name="password" type="password" required minLength={6} autoComplete="new-password" className={inputClass} placeholder="Min. 6 characters" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            minLength={6}
+            autoComplete="new-password"
+            className={inputClass}
+            placeholder="Min. 6 characters"
+          />
         </div>
 
         <button

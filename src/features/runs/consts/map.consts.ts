@@ -7,4 +7,3 @@ export const MARKER_SIZE = 14
 export const MARKER_ANCHOR = 7
 export const START_MARKER_COLOR = '#34D399'
 export const END_MARKER_COLOR = '#A855F7'
-

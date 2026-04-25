@@ -20,4 +20,3 @@ const GlassCard: FC<Props> = ({ children, className }) => {
 }
 
 export default GlassCard
-

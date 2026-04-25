@@ -1,4 +1,4 @@
-import {CalendarDay} from "../types";
+import { CalendarDay } from '../types'
 import { DAYS_IN_WEEK, LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'
 
 export function parseYearMonth(yearMonth: string): { year: number; month: number } {
@@ -22,8 +22,7 @@ export function formatMonthYear(year: number, month: number, locale: string = 'e
 
 export function getAdjacentMonths(yearMonth: string): { prev: string; next: string } {
   const { year, month } = parseYearMonth(yearMonth)
-  const toYM = (d: Date) =>
-    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+  const toYM = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
   return {
     prev: toYM(new Date(year, month - 2, 1)),
     next: toYM(new Date(year, month, 1)),
@@ -53,10 +52,7 @@ export function getCalendarDays(year: number, month: number): CalendarDay[] {
   for (let d = 1; d <= daysInMonth; d++) {
     days.push({
       dayNumber: d,
-      isToday:
-        todayUTC.year === year &&
-        todayUTC.month === month &&
-        todayUTC.day === d,
+      isToday: todayUTC.year === year && todayUTC.month === month && todayUTC.day === d,
       isCurrentMonth: true,
     })
   }

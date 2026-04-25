@@ -1,8 +1,8 @@
 import { prisma } from '@/lib/db'
 
-import {Coordinate, IntervalSummary} from '../types'
-import { runListSelect, runDetailSelect } from "../consts"
-import {getMonthDateRange} from "../utils";
+import { Coordinate, IntervalSummary } from '../types'
+import { runListSelect, runDetailSelect } from '../consts'
+import { getMonthDateRange } from '../utils'
 import { parseYearMonth } from '@/features/calendar/utils'
 
 export type RunListItem = Awaited<ReturnType<typeof getRunsByMonth>>[number]

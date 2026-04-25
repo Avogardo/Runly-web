@@ -20,9 +20,8 @@ export default auth((req) => {
   let response: NextResponse | undefined
 
   const localeCookie = req.cookies.get(cookieName)?.value
-  if (!localeCookie || !languages.includes(localeCookie as typeof languages[number])) {
-    const detected =
-      acceptLanguage.get(req.headers.get('Accept-Language')) ?? fallbackLng
+  if (!localeCookie || !languages.includes(localeCookie as (typeof languages)[number])) {
+    const detected = acceptLanguage.get(req.headers.get('Accept-Language')) ?? fallbackLng
     response = NextResponse.next()
     response.cookies.set(cookieName, detected, { path: '/', maxAge: SECONDS_IN_YEAR })
   }

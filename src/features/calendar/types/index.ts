@@ -1,1 +1,1 @@
-export {type CalendarDay} from './calendar.types'
+export { type CalendarDay } from './calendar.types'

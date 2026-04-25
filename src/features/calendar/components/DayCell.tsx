@@ -21,9 +21,7 @@ export const DayCell: FC<Props> = ({
   yearMonth,
   runsLabel,
 }) => {
-  const href = isSelected
-    ? `/?month=${yearMonth}`
-    : `/?month=${yearMonth}&day=${dayNumber}`
+  const href = isSelected ? `/?month=${yearMonth}` : `/?month=${yearMonth}&day=${dayNumber}`
 
   return (
     <Link
@@ -56,19 +54,22 @@ export const DayCell: FC<Props> = ({
             {formatDistance(totalDistance)}
           </span>
           {runCount > 1 && (
-            <span className="text-[9px] sm:text-[10px] text-white/30 leading-none">{runCount} {runsLabel}</span>
+            <span className="text-[9px] sm:text-[10px] text-white/30 leading-none">
+              {runCount} {runsLabel}
+            </span>
           )}
         </div>
       )}
 
       {/* Run dot indicator */}
       {runCount > 0 && (
-        <span className={cn(
-          'absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full',
-          isSelected ? 'bg-purple-400' : 'bg-emerald-400',
-        )} />
+        <span
+          className={cn(
+            'absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full',
+            isSelected ? 'bg-purple-400' : 'bg-emerald-400',
+          )}
+        />
       )}
     </Link>
   )
 }
-

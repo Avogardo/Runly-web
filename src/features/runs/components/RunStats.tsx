@@ -1,9 +1,9 @@
 import { type FC } from 'react'
 import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
-import {StatCard} from "./StatCard";
+import { StatCard } from './StatCard'
 
-import {formatDateTime} from "../utils";
+import { formatDateTime } from '../utils'
 import { LOCALE_MAP, DEFAULT_LOCALE } from '@/consts'
 
 type StatsLabels = {
@@ -32,7 +32,15 @@ export const RunStats: FC<Props> = ({ distance, duration, startedAt, endedAt, la
         <StatCard label={labels.distance} value={formatDistance(distance)} accent />
         <StatCard label={labels.duration} value={formatDuration(duration)} />
         <StatCard label={labels.avgPace} value={formatPace(distance, duration)} />
-        <StatCard label={labels.date} value={startedAt.toLocaleDateString(dateLocale, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })} />
+        <StatCard
+          label={labels.date}
+          value={startedAt.toLocaleDateString(dateLocale, {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            timeZone: 'UTC',
+          })}
+        />
       </div>
 
       {/* Time range */}

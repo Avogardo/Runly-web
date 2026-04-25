@@ -18,6 +18,7 @@
 - [x] First run: `npm run dev` → see placeholder pages
 
 **What you'll learn:**
+
 - Next.js App Router vs Pages Router
 - File-based routing (`page.tsx`, `layout.tsx`, dynamic `[id]`)
 - Server Components vs Client Components
@@ -38,6 +39,7 @@
 - [x] Verify with `npx prisma studio` — browse data in GUI
 
 **What you'll learn:**
+
 - Prisma ORM (schema, migrations, client)
 - Serverless PostgreSQL (Neon)
 - JSON columns for flexible data (path, intervals)
@@ -58,6 +60,7 @@
 - [x] Test endpoints with Postman / curl
 
 **What you'll learn:**
+
 - Next.js Route Handlers (`route.ts` with `GET`, `POST`, `DELETE`)
 - Request/response handling in App Router
 - Zod validation
@@ -80,6 +83,7 @@
 - [x] Empty state for days/months with no runs
 
 **What you'll learn:**
+
 - Server Components for data fetching (no `useEffect` + loading states)
 - Mixing Server + Client Components (`'use client'` directive)
 - `searchParams` for URL-driven state (month navigation)
@@ -103,6 +107,7 @@
 - [x] 404 page for non-existent run
 
 **What you'll learn:**
+
 - Dynamic routes with `params`
 - Server-side data fetching (no loading spinner needed)
 - Integrating client-only libraries (Leaflet) in Server Component architecture
@@ -126,6 +131,7 @@
 - [x] Polish: transitions, hover states, focus rings
 
 **What you'll learn:**
+
 - Tailwind CSS customization (theme extension)
 - `backdrop-filter` / glassmorphism in CSS
 - Responsive design with Tailwind breakpoints
@@ -146,6 +152,7 @@
 - [x] API route protection (validate session)
 
 **What you'll learn:**
+
 - NextAuth.js setup with App Router
 - Middleware for route protection
 - Session management (server-side & client-side)
@@ -167,6 +174,7 @@
 - [ ] Verify: full flow works in production (calendar → run details)
 
 **What you'll learn:**
+
 - AWS Amplify (hosting, build settings, env vars)
 - Production database setup
 - Environment management (dev vs prod)
@@ -189,6 +197,7 @@
 - [ ] Badge in README showing pipeline status
 
 **What you'll learn:**
+
 - GitHub Actions workflow syntax
 - CI vs CD (continuous integration vs deployment)
 - Branch protection rules
@@ -208,6 +217,7 @@
 - [ ] Test: record run on phone → appears in web calendar
 
 **What you'll learn:**
+
 - API design for mobile clients
 - Authentication for mobile↔server communication
 - Offline-first sync patterns
@@ -217,18 +227,18 @@
 
 ## 📐 Phase Summary
 
-| Phase | Scope | Priority |
-|---|---|---|
-| 0 | Project setup | 🔴 Must |
-| 1 | Database + Prisma | 🔴 Must |
-| 2 | API routes | 🔴 Must |
-| 3 | Calendar view | 🔴 Must |
-| 4 | Run details + map | 🔴 Must |
-| 5 | Glassmorphism UI | 🟡 Should |
-| 6 | Auth | 🟡 Should |
-| 7 | AWS deployment | 🟡 Should |
-| 8 | CI/CD | 🟡 Should |
-| 9 | Mobile sync | 🟢 Nice to have |
+| Phase | Scope             | Priority        |
+| ----- | ----------------- | --------------- |
+| 0     | Project setup     | 🔴 Must         |
+| 1     | Database + Prisma | 🔴 Must         |
+| 2     | API routes        | 🔴 Must         |
+| 3     | Calendar view     | 🔴 Must         |
+| 4     | Run details + map | 🔴 Must         |
+| 5     | Glassmorphism UI  | 🟡 Should       |
+| 6     | Auth              | 🟡 Should       |
+| 7     | AWS deployment    | 🟡 Should       |
+| 8     | CI/CD             | 🟡 Should       |
+| 9     | Mobile sync       | 🟢 Nice to have |
 
 > **Phases 0–4 = MVP**
 > Estimated time at regular pace: **3–5 weeks**
@@ -237,16 +247,15 @@
 
 ## 💡 Tips for React → Next.js Devs
 
-| React (CRA / Vite) | Next.js (App Router) | Note |
-|---|---|---|
-| `react-router-dom` | File-based routing (`page.tsx`) | Folders = routes, no config |
-| `useEffect` + `fetch` | Server Components | Data fetched on server, no loading spinners |
-| Everything is a Client Component | Server Components by default | Add `'use client'` only for interactivity |
-| `express` backend | API Route Handlers (`route.ts`) | Same repo, same deploy |
-| `index.html` | `layout.tsx` + `page.tsx` | Layout wraps pages automatically |
-| `process.env.REACT_APP_*` | `process.env.NEXT_PUBLIC_*` | Only `NEXT_PUBLIC_` exposed to client |
-| `react-helmet` | `metadata` export / `generateMetadata` | Built-in SEO support |
-| Client-side routing only | SSR / SSG / ISR | Choose per page: static, dynamic, or revalidating |
-| `npm start` (static server) | `next dev` / `next build` / `next start` | Dev, build, production server |
-| `.env` | `.env.local` | Auto-loaded, not committed to git |
-
+| React (CRA / Vite)               | Next.js (App Router)                     | Note                                              |
+| -------------------------------- | ---------------------------------------- | ------------------------------------------------- |
+| `react-router-dom`               | File-based routing (`page.tsx`)          | Folders = routes, no config                       |
+| `useEffect` + `fetch`            | Server Components                        | Data fetched on server, no loading spinners       |
+| Everything is a Client Component | Server Components by default             | Add `'use client'` only for interactivity         |
+| `express` backend                | API Route Handlers (`route.ts`)          | Same repo, same deploy                            |
+| `index.html`                     | `layout.tsx` + `page.tsx`                | Layout wraps pages automatically                  |
+| `process.env.REACT_APP_*`        | `process.env.NEXT_PUBLIC_*`              | Only `NEXT_PUBLIC_` exposed to client             |
+| `react-helmet`                   | `metadata` export / `generateMetadata`   | Built-in SEO support                              |
+| Client-side routing only         | SSR / SSG / ISR                          | Choose per page: static, dynamic, or revalidating |
+| `npm start` (static server)      | `next dev` / `next build` / `next start` | Dev, build, production server                     |
+| `.env`                           | `.env.local`                             | Auto-loaded, not committed to git                 |

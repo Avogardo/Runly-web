@@ -15,4 +15,3 @@ export function getOptions(lng: string = fallbackLng, ns: string | string[] = de
     ns,
   }
 }
-
