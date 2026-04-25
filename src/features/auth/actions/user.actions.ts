@@ -26,14 +26,14 @@ export async function registerUser(
 
   if (!result.success) {
     const firstError = result.error.issues[0]
-    return { error: firstError?.message ?? 'Validation failed' }
+    return { error: firstError?.message ?? 'validationFailed' }
   }
 
   const { email, password, name } = result.data
 
   const user = await createUser(email, password, name)
   if (!user) {
-    return { error: 'Email already registered' }
+    return { error: 'emailTaken' }
   }
 
   const signInResult = await signIn('credentials', {
@@ -43,7 +43,7 @@ export async function registerUser(
   })
 
   if (signInResult?.error) {
-    return { error: 'Account created but sign-in failed. Try logging in.' }
+    return { error: 'signInFailed' }
   }
 
   redirect('/')
@@ -63,7 +63,7 @@ export async function loginUser(
     })
   } catch (error) {
     if (error instanceof AuthError) {
-      return { error: 'Invalid email or password' }
+      return { error: 'invalidCredentials' }
     }
     throw error
   }

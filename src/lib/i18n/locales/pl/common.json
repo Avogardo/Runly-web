@@ -1,0 +1,43 @@
+{
+  "backToCalendar": "← Wróć do kalendarza",
+  "signOut": "Wyloguj",
+  "tryAgain": "Spróbuj ponownie",
+  "somethingWentWrong": "Coś poszło nie tak",
+  "unexpectedError": "Wystąpił nieoczekiwany błąd.",
+  "runNotFound": "Nie znaleziono biegu",
+  "runNotFoundDescription": "Ten bieg nie istnieje lub został usunięty.",
+  "footer": "Runly Web · Zbudowane z Next.js",
+  "stats": {
+    "distance": "Dystans",
+    "duration": "Czas",
+    "avgPace": "Śr. tempo",
+    "date": "Data",
+    "pace": "Tempo"
+  },
+  "deleteRun": "Usuń bieg",
+  "deleting": "Usuwanie...",
+  "deleteConfirm": "Czy na pewno chcesz usunąć ten bieg? Tej operacji nie można cofnąć.",
+  "noRunsOnDay": "Brak biegów w tym dniu.",
+  "runs": "biegów",
+  "days": {
+    "mon": "Pon",
+    "tue": "Wt",
+    "wed": "Śr",
+    "thu": "Czw",
+    "fri": "Pt",
+    "sat": "Sob",
+    "sun": "Ndz"
+  },
+  "intervals": {
+    "title": "Trening interwałowy",
+    "planned": "Zaplanowane",
+    "heavy": "Intensywne",
+    "light": "Lekkie",
+    "completed": "Ukończone",
+    "intervals": "interwałów",
+    "heavyLabel": "intensywne",
+    "lightLabel": "lekkie",
+    "voiceEnabled": "głos włączony"
+  }
+}
+

@@ -1,0 +1,43 @@
+{
+  "backToCalendar": "← Back to Calendar",
+  "signOut": "Sign out",
+  "tryAgain": "Try again",
+  "somethingWentWrong": "Something went wrong",
+  "unexpectedError": "An unexpected error occurred.",
+  "runNotFound": "Run not found",
+  "runNotFoundDescription": "This run doesn't exist or may have been deleted.",
+  "footer": "Runly Web · Built with Next.js",
+  "stats": {
+    "distance": "Distance",
+    "duration": "Duration",
+    "avgPace": "Avg Pace",
+    "date": "Date",
+    "pace": "Pace"
+  },
+  "deleteRun": "Delete run",
+  "deleting": "Deleting...",
+  "deleteConfirm": "Are you sure you want to delete this run? This cannot be undone.",
+  "noRunsOnDay": "No runs on this day.",
+  "runs": "runs",
+  "days": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "intervals": {
+    "title": "Interval Training",
+    "planned": "Planned",
+    "heavy": "Heavy",
+    "light": "Light",
+    "completed": "Completed",
+    "intervals": "intervals",
+    "heavyLabel": "heavy",
+    "lightLabel": "light",
+    "voiceEnabled": "voice enabled"
+  }
+}
+

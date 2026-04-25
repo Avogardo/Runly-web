@@ -2,10 +2,15 @@ import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import UserMenu from '@/components/ui/UserMenu'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
+import { getServerTranslation, getLocale } from '@/lib/i18n/server'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await auth()
   if (!session?.user) redirect('/login')
+
+  const lng = await getLocale()
+  const { t } = await getServerTranslation('common', { lng })
 
   return (
     <>
@@ -19,10 +24,14 @@ export default async function DashboardLayout({ children }: { children: React.Re
               Runly
             </span>
           </Link>
-          <UserMenu
-            userName={session.user.name}
-            userEmail={session.user.email}
-          />
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher currentLocale={lng} />
+            <UserMenu
+              userName={session.user.name}
+              userEmail={session.user.email}
+              signOutLabel={t('signOut')}
+            />
+          </div>
         </nav>
       </header>
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
@@ -30,10 +39,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
       </main>
       <footer className="px-6 py-4 border-t border-white/5">
         <div className="max-w-6xl mx-auto text-center text-xs text-white/20">
-          Runly Web · Built with Next.js
+          {t('footer')}
         </div>
       </footer>
     </>
   )
 }
-

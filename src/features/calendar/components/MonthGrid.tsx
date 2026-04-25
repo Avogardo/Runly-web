@@ -1,5 +1,5 @@
 import { type FC } from 'react'
-import type { CalendarDay } from '@/features/calendar/utils'
+import type { CalendarDay } from '@/features/calendar/types'
 import GlassCard from '@/components/ui/GlassCard'
 import {DayCell} from './DayCell'
 
@@ -13,16 +13,16 @@ type Props = {
   runsByDay: Map<number, RunSummary[]>
   selectedDay: number | null
   yearMonth: string
+  dayNames: string[]
+  runsLabel: string
 }
 
-const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-
-export const MonthGrid: FC<Props> = ({ calendarDays, runsByDay, selectedDay, yearMonth }) => {
+export const MonthGrid: FC<Props> = ({ calendarDays, runsByDay, selectedDay, yearMonth, dayNames, runsLabel }) => {
   return (
     <GlassCard className="p-3 sm:p-4">
       {/* Weekday headers */}
       <div className="grid grid-cols-7 mb-1">
-        {DAY_NAMES.map((name) => (
+        {dayNames.map((name) => (
           <div key={name} className="text-center text-[10px] sm:text-xs font-medium text-white/35 py-2 uppercase tracking-wider">
             {name}
           </div>
@@ -48,6 +48,7 @@ export const MonthGrid: FC<Props> = ({ calendarDays, runsByDay, selectedDay, yea
               runCount={dayRuns.length}
               totalDistance={totalDistance}
               yearMonth={yearMonth}
+              runsLabel={runsLabel}
             />
           )
         })}

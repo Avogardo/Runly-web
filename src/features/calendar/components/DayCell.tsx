@@ -9,6 +9,7 @@ type Props = {
   runCount: number
   totalDistance: number
   yearMonth: string
+  runsLabel: string
 }
 
 export const DayCell: FC<Props> = ({
@@ -18,6 +19,7 @@ export const DayCell: FC<Props> = ({
   runCount,
   totalDistance,
   yearMonth,
+  runsLabel,
 }) => {
   const href = isSelected
     ? `/?month=${yearMonth}`
@@ -54,7 +56,7 @@ export const DayCell: FC<Props> = ({
             {formatDistance(totalDistance)}
           </span>
           {runCount > 1 && (
-            <span className="text-[9px] sm:text-[10px] text-white/30 leading-none">{runCount} runs</span>
+            <span className="text-[9px] sm:text-[10px] text-white/30 leading-none">{runCount} {runsLabel}</span>
           )}
         </div>
       )}

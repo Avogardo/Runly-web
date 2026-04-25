@@ -12,8 +12,9 @@ export function getCurrentYearMonth(): string {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`
 }
 
-export function formatMonthYear(year: number, month: number): string {
-  return new Date(year, month - 1, 1).toLocaleDateString('en-US', {
+export function formatMonthYear(year: number, month: number, locale: string = 'en'): string {
+  const localeMap: Record<string, string> = { en: 'en-US', pl: 'pl-PL' }
+  return new Date(year, month - 1, 1).toLocaleDateString(localeMap[locale] ?? 'en-US', {
     month: 'long',
     year: 'numeric',
   })

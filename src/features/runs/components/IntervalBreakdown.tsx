@@ -2,35 +2,48 @@ import { type FC } from 'react'
 import type { IntervalSummary } from '@/features/runs/types'
 import GlassCard from '@/components/ui/GlassCard'
 
-type Props = {
-  intervals: IntervalSummary
+type IntervalLabels = {
+  title: string
+  planned: string
+  heavy: string
+  light: string
+  completed: string
+  intervals: string
+  heavyLabel: string
+  lightLabel: string
+  voiceEnabled: string
 }
 
-export const IntervalBreakdown: FC<Props> = ({ intervals }) => {
+type Props = {
+  intervals: IntervalSummary
+  labels: IntervalLabels
+}
+
+export const IntervalBreakdown: FC<Props> = ({ intervals, labels }) => {
   const { config, intervals: completed } = intervals
   const heavyCount = completed.filter((i) => i.type === 'heavy').length
   const lightCount = completed.filter((i) => i.type === 'light').length
 
   return (
     <GlassCard className="p-5 sm:p-6">
-      <h3 className="text-base sm:text-lg font-semibold text-white mb-4">Interval Training</h3>
+      <h3 className="text-base sm:text-lg font-semibold text-white mb-4">{labels.title}</h3>
 
       {/* Config summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">Planned</span>
-          <span className="text-white font-medium">{config.total} intervals</span>
+          <span className="text-xs text-white/40">{labels.planned}</span>
+          <span className="text-white font-medium">{config.total} {labels.intervals}</span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">Heavy</span>
+          <span className="text-xs text-white/40">{labels.heavy}</span>
           <span className="text-white font-medium">{config.heavyDurationSec}s</span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">Light</span>
+          <span className="text-xs text-white/40">{labels.light}</span>
           <span className="text-white font-medium">{config.lightDurationSec}s</span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-white/40">Completed</span>
+          <span className="text-xs text-white/40">{labels.completed}</span>
           <span className="text-emerald-400 font-medium">{completed.length} / {config.total}</span>
         </div>
       </div>
@@ -54,10 +67,9 @@ export const IntervalBreakdown: FC<Props> = ({ intervals }) => {
       </div>
 
       <div className="mt-3 text-xs text-white/35">
-        {heavyCount} heavy · {lightCount} light
-        {config.voiceEnabled && ' · 🔊 voice enabled'}
+        {heavyCount} {labels.heavyLabel} · {lightCount} {labels.lightLabel}
+        {config.voiceEnabled && ` · 🔊 ${labels.voiceEnabled}`}
       </div>
     </GlassCard>
   )
 }
-

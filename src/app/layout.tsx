@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getLocale } from "@/lib/i18n/server";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,19 +19,19 @@ export const metadata: Metadata = {
     "Calendar-based running history dashboard with route visualization",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lng = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={lng}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-screen flex flex-col">
-        {children}
-      </body>
+      <body className="min-h-screen flex flex-col">{children}</body>
     </html>
   );
 }

@@ -1,5 +1,9 @@
 import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
+import acceptLanguage from 'accept-language'
+import { fallbackLng, languages, cookieName } from '@/lib/i18n/settings'
+
+acceptLanguage.languages([...languages])
 
 const PUBLIC_PATHS = ['/login', '/register']
 const PUBLIC_API_PREFIXES = ['/api/auth', '/api/register']
@@ -11,32 +15,40 @@ export default auth((req) => {
   const isPublicApi = PUBLIC_API_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const isApiRoute = pathname.startsWith('/api/')
 
-  // Allow public API routes always
-  if (isPublicApi) {
-    return NextResponse.next()
+  // — Language detection (cookie-based) —
+  let response: NextResponse | undefined
+
+  const localeCookie = req.cookies.get(cookieName)?.value
+  if (!localeCookie || !languages.includes(localeCookie as typeof languages[number])) {
+    const detected =
+      acceptLanguage.get(req.headers.get('Accept-Language')) ?? fallbackLng
+    response = NextResponse.next()
+    response.cookies.set(cookieName, detected, { path: '/', maxAge: 31536000 })
   }
 
-  // Protected API routes → 401 JSON (not redirect) for mobile clients
+  // — Auth logic —
+
+  if (isPublicApi) {
+    return response ?? NextResponse.next()
+  }
+
   if (isApiRoute && !isLoggedIn) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Redirect logged-in users away from auth pages
   if (isAuthPage && isLoggedIn) {
     return NextResponse.redirect(new URL('/', req.url))
   }
 
-  // Allow auth pages for everyone
   if (isAuthPage) {
-    return NextResponse.next()
+    return response ?? NextResponse.next()
   }
 
-  // Protect everything else
   if (!isLoggedIn) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
-  return NextResponse.next()
+  return response ?? NextResponse.next()
 })
 
 export const config = {
