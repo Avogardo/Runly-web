@@ -1,33 +1,8 @@
 import { prisma } from '@/lib/db'
-import { getMonthDateRange } from '@/features/calendar/utils'
-import type { Coordinate, IntervalSummary } from '@/features/runs/types'
 
-// ── Select shapes ───────────────────────────────────────
-
-/** Lightweight fields for list views (no path/intervals) */
-const runListSelect = {
-  id: true,
-  startedAt: true,
-  endedAt: true,
-  distance: true,
-  duration: true,
-} as const
-
-/** Full run with all fields */
-const runDetailSelect = {
-  id: true,
-  startedAt: true,
-  endedAt: true,
-  distance: true,
-  duration: true,
-  path: true,
-  intervals: true,
-  createdAt: true,
-  updatedAt: true,
-  userId: true,
-} as const
-
-// ── Queries ─────────────────────────────────────────────
+import {Coordinate, IntervalSummary} from '../types'
+import { runListSelect, runDetailSelect } from "../consts"
+import {getMonthDateRange} from "../utils";
 
 export type RunListItem = Awaited<ReturnType<typeof getRunsByMonth>>[number]
 
@@ -84,4 +59,3 @@ export async function getRunById(userId: string, runId: string) {
     intervals: run.intervals as IntervalSummary | null,
   }
 }
-

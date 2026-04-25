@@ -1,8 +1,4 @@
-export type CalendarDay = {
-  dayNumber: number // 0 = padding/empty
-  isToday: boolean
-  isCurrentMonth: boolean
-}
+import {CalendarDay} from "../types";
 
 export function parseYearMonth(yearMonth: string): { year: number; month: number } {
   return {
@@ -73,10 +69,11 @@ export function getCalendarDays(year: number, month: number): CalendarDay[] {
   return days
 }
 
-export function getMonthDateRange(year: number, month: number): { start: Date; end: Date } {
-  return {
-    start: new Date(Date.UTC(year, month - 1, 1)),
-    end: new Date(Date.UTC(year, month, 1)),
-  }
+export function formatTime(date: Date): string {
+  return date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'UTC',
+  })
 }
-

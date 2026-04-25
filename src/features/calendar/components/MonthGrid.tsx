@@ -1,6 +1,6 @@
 import type { CalendarDay } from '@/features/calendar/utils'
 import GlassCard from '@/components/ui/GlassCard'
-import DayCell from './DayCell'
+import {DayCell} from './DayCell'
 
 type RunSummary = {
   distance: number
@@ -16,7 +16,7 @@ type Props = {
 
 const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-export default function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMonth }: Props) {
+export function MonthGrid({ calendarDays, runsByDay, selectedDay, yearMonth }: Props) {
   return (
     <GlassCard className="p-3 sm:p-4">
       {/* Weekday headers */}

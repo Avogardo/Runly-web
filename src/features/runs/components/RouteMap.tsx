@@ -4,13 +4,12 @@ import { MapContainer, TileLayer, Polyline, Marker, useMap } from 'react-leaflet
 import L from 'leaflet'
 import { useEffect } from 'react'
 import 'leaflet/dist/leaflet.css'
-import type { Coordinate } from '@/features/runs/types'
+import type { Coordinate } from '../types'
 
 type Props = {
   path: Coordinate[]
 }
 
-// Custom colored circle markers
 function createCircleIcon(color: string) {
   return L.divIcon({
     className: '',
@@ -20,8 +19,8 @@ function createCircleIcon(color: string) {
   })
 }
 
-const startIcon = createCircleIcon('#34D399') // emerald/green
-const endIcon = createCircleIcon('#A855F7') // purple
+const startIcon = createCircleIcon('#34D399')
+const endIcon = createCircleIcon('#A855F7')
 
 // Auto-fit map to route bounds
 function FitBounds({ positions }: { positions: L.LatLngExpression[] }) {
@@ -37,7 +36,7 @@ function FitBounds({ positions }: { positions: L.LatLngExpression[] }) {
   return null
 }
 
-export default function RouteMap({ path }: Props) {
+export function RouteMap({ path }: Props) {
   const positions: L.LatLngExpression[] = path.map((p) => [p.latitude, p.longitude])
   const start = positions[0]
   const end = positions[positions.length - 1]

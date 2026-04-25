@@ -2,10 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { auth } from '@/lib/auth'
 import { getRunById } from '@/features/runs/queries'
-import RunStats from '@/features/runs/components/RunStats'
-import IntervalBreakdown from '@/features/runs/components/IntervalBreakdown'
-import RouteMapWrapper from '@/features/runs/components/RouteMapWrapper'
-import DeleteRunButton from '@/features/runs/components/DeleteRunButton'
+import {RunStats, DeleteRunButton, IntervalBreakdown, RouteMapWrapper} from '@/features/runs'
 
 type Params = Promise<{ id: string }>
 

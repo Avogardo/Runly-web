@@ -1,5 +1,8 @@
-import { formatDistance, formatDuration, formatPace, formatDateTime } from '@/lib/utils'
+import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
+import {StatCard} from "./StatCard";
+
+import {formatDateTime} from "../utils";
 
 type Props = {
   distance: number
@@ -8,25 +11,7 @@ type Props = {
   endedAt: Date
 }
 
-
-type StatCardProps = {
-  label: string
-  value: string
-  accent?: boolean
-}
-
-function StatCard({ label, value, accent = false }: StatCardProps) {
-  return (
-    <div className="flex flex-col gap-1.5 bg-white/4 rounded-xl p-3 sm:p-4 border border-white/6">
-      <span className="text-[10px] sm:text-xs text-foreground-muted uppercase tracking-wider">{label}</span>
-      <span className={`text-lg sm:text-xl font-bold ${accent ? 'text-emerald-400' : 'text-white'}`}>
-        {value}
-      </span>
-    </div>
-  )
-}
-
-export default function RunStats({ distance, duration, startedAt, endedAt }: Props) {
+export function RunStats({ distance, duration, startedAt, endedAt }: Props) {
   return (
     <GlassCard className="p-4 sm:p-6 flex flex-col gap-4">
       {/* Stats grid */}

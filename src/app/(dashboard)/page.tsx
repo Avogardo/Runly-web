@@ -7,9 +7,7 @@ import {
   getAdjacentMonths,
   formatMonthYear,
 } from '@/features/calendar/utils'
-import CalendarNav from '@/features/calendar/components/CalendarNav'
-import MonthGrid from '@/features/calendar/components/MonthGrid'
-import DayRunsList from '@/features/calendar/components/DayRunsList'
+import {CalendarNav, MonthGrid, DayRunsList} from '@/features/calendar'
 
 type SearchParams = Promise<{ month?: string; day?: string }>
 

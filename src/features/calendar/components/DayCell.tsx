@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { formatDistance, cn } from '@/lib/utils'
+import { formatDistance, cn } from '@/utils'
 
 type Props = {
   dayNumber: number
@@ -10,7 +10,7 @@ type Props = {
   yearMonth: string
 }
 
-export default function DayCell({
+export function DayCell({
   dayNumber,
   isToday,
   isSelected,

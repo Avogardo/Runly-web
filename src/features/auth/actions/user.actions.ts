@@ -2,13 +2,13 @@
 
 import { signIn } from '@/lib/auth'
 import { createUser } from '@/features/auth/queries'
-import { registerSchema } from '@/features/auth/validations'
+import { registerSchema } from '@/features/auth'
 import { redirect } from 'next/navigation'
 import { AuthError } from 'next-auth'
 
 // ── Types ───────────────────────────────────────────────
 
-export type AuthActionState = {
+type AuthActionState = {
   error?: string
 } | null
 

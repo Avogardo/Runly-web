@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { prisma } from '@/lib/db'
 import { auth } from '@/lib/auth'
 import { getUserRuns } from '@/features/runs/queries'
-import { createRunSchema, monthQuerySchema } from '@/features/runs/validations'
+import { createRunSchema, monthQuerySchema } from '@/features/runs'
 
 export async function GET(request: NextRequest) {
   try {

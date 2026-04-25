@@ -5,7 +5,7 @@ type Props = {
   intervals: IntervalSummary
 }
 
-export default function IntervalBreakdown({ intervals }: Props) {
+export function IntervalBreakdown({ intervals }: Props) {
   const { config, intervals: completed } = intervals
   const heavyCount = completed.filter((i) => i.type === 'heavy').length
   const lightCount = completed.filter((i) => i.type === 'light').length

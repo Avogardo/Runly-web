@@ -3,9 +3,11 @@
 import dynamic from 'next/dynamic'
 import type { Coordinate } from '@/features/runs/types'
 
-const RouteMap = dynamic(() => import('./RouteMap'), { ssr: false })
+const RouteMap = dynamic(
+  () => import('./RouteMap').then((mod) => mod.RouteMap),
+  { ssr: false },
+)
 
-export default function RouteMapWrapper({ path }: { path: Coordinate[] }) {
+export function RouteMapWrapper({ path }: { path: Coordinate[] }) {
   return <RouteMap path={path} />
 }
-

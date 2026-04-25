@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { formatDistance, formatDuration, formatPace, formatTime } from '@/lib/utils'
+import { formatDistance, formatDuration, formatPace } from '@/utils'
 import GlassCard from '@/components/ui/GlassCard'
 import type { RunListItem } from '@/features/runs/queries'
+import {formatTime} from "../utils";
 
 type Props = {
   day: number
@@ -10,7 +11,7 @@ type Props = {
   runs: RunListItem[]
 }
 
-export default function DayRunsList({ day, month, year, runs }: Props) {
+export function DayRunsList({ day, month, year, runs }: Props) {
   const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createUser } from '@/features/auth/queries'
-import { registerSchema } from '@/features/auth/validations'
+import { registerSchema } from '@/features/auth'
 
 export async function POST(request: NextRequest) {
   try {
