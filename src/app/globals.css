@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: #2D1B69;
 }
 
 body {
@@ -30,6 +31,7 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   min-height: 100vh;
+  overscroll-behavior: none;
 }
 
 /* Global focus ring for accessibility */
