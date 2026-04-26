@@ -186,22 +186,15 @@
 
 **Goal:** Automated pipeline: lint → test → build → deploy.
 
-- [ ] Create `.github/workflows/ci.yml`
-- [ ] **Lint** step: `eslint . --max-warnings 0`
-- [ ] **Type check** step: `tsc --noEmit`
-- [ ] **Test** step: `vitest run`
-- [ ] **Build** step: `next build`
-- [ ] **Deploy** step: trigger Amplify deploy (on push to `main` only)
+- [x] Create `.github/workflows/ci.yml`
+- [x] **Lint** step: `eslint . --max-warnings 0`
+- [x] **Type check** step: `tsc --noEmit`
+- [x] **Test** step: `vitest run`
+- [x] **Build** step: `next build`
+- [x] **Deploy** step: trigger Amplify deploy (on push to `main` only)
 - [ ] PR checks: require all steps to pass before merge
-- [ ] GitHub Secrets for `DATABASE_URL`, `NEXTAUTH_SECRET`
-- [ ] Badge in README showing pipeline status
-
-**What you'll learn:**
-
-- GitHub Actions workflow syntax
-- CI vs CD (continuous integration vs deployment)
-- Branch protection rules
-- Secrets management
+- [x] GitHub Secrets for `DATABASE_URL`, `NEXTAUTH_SECRET`
+- [x] Badge in README showing pipeline status
 
 ---
 

@@ -1,5 +1,7 @@
 # 🏃 Runly Web
 
+[![CI](https://github.com/Avogardo/Runly-web/actions/workflows/ci.yml/badge.svg)](https://github.com/Avogardo/Runly-web/actions/workflows/ci.yml)
+
 Web dashboard for the Runly running app. View your runs on a calendar, explore route maps, and track interval training — all in a dark glassmorphism UI.
 
 ## Screenshots

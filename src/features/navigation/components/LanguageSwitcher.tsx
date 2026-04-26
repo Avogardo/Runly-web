@@ -19,6 +19,7 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = ({ currentLocale }) =
   const [pending, startTransition] = useTransition()
 
   const handleChange = (locale: Locale) => {
+    // eslint-disable-next-line react-hooks/immutability -- cookie must be set before refresh
     document.cookie = `${cookieName}=${locale};path=/;max-age=31536000`
     void i18next.changeLanguage(locale)
     startTransition(() => {

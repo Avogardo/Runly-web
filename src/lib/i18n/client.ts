@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, startTransition } from 'react'
 import i18next, { type TFunction } from 'i18next'
 import { initReactI18next, useTranslation as useTranslationOrg } from 'react-i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
@@ -35,7 +35,9 @@ export function useTranslation(
 
   useEffect(() => {
     if (activeLng === i18n.resolvedLanguage) return
-    setActiveLng(i18n.resolvedLanguage)
+    startTransition(() => {
+      setActiveLng(i18n.resolvedLanguage)
+    })
   }, [activeLng, i18n.resolvedLanguage])
 
   useEffect(() => {
